@@ -9,6 +9,8 @@ namespace Robots.Core.Programs
 {
     public class BeepCommand : ICommand
     {
+        public string Describe() => "Beep";
+
         public Task Execute(IRobot robot) => robot.Beep();
     }
 }

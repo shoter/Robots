@@ -16,6 +16,8 @@ namespace Robots.Core.Programs
             this.distance = distance;
         }
 
+        public string Describe() => $"Move for distance of {distance}";
+
         public Task Execute(IRobot robot) => robot.Move(distance);
     }
 }

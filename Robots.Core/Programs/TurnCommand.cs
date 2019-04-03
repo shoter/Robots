@@ -16,6 +16,8 @@ namespace Robots.Core.Programs
             this.angle = angle;
         }
 
+        public string Describe() => $"Turn by angle of {angle}";
+
         public Task Execute(IRobot robot) => robot.Turn(angle);
     }
 }

@@ -10,7 +10,7 @@ namespace Robots.Core.Programs
     /// <summary>
     /// 
     /// </summary>
-    public interface ICommand
+    public interface IProgramCommand
     {
         /// <summary>
         /// 

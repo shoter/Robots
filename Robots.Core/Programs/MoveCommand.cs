@@ -7,7 +7,7 @@ using Robots.SDK;
 
 namespace Robots.Core.Programs
 {
-    public class MoveCommand : ICommand
+    public class MoveCommand : IProgramCommand
     {
         private double distance;
 

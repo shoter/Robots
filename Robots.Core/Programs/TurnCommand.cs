@@ -7,7 +7,7 @@ using Robots.SDK;
 
 namespace Robots.Core.Programs
 {
-    public class TurnCommand : ICommand
+    public class TurnCommand : IProgramCommand
     {
         private double angle;
 

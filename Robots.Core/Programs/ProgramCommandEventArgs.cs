@@ -4,9 +4,9 @@ namespace Robots.Core.Programs
 {
     public class ProgramCommandEventArgs : EventArgs
     {
-        public ICommand Command { get; }
+        public IProgramCommand Command { get; }
 
-        public ProgramCommandEventArgs(ICommand command)
+        public ProgramCommandEventArgs(IProgramCommand command)
         {
             this.Command = command;
         }

@@ -10,8 +10,15 @@ namespace Robots.Gui.State
 {
     public interface IRobotState
     {
+        ulong Id { get; }
+
         IRobot Robot { get; }
         IProgram AssignedProgram { get; }
         bool IsProgramRunning { get; }
+
+        void AssignProgram(IProgram program);
+        bool CanAssignProgram();
+
+        void RunProgram();
     }
 }

@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Robots.SDK;
+using System;
 
 namespace Robots.Core.Programs
 {
-    public class ProgramCommandEventArgs : EventArgs
+    public class ProgramCommandEventArgs : ProgramEventArgs 
     {
         public IProgramCommand Command { get; }
 
-        public ProgramCommandEventArgs(IProgramCommand command)
+        public ProgramCommandEventArgs(IRobot robot, IProgramCommand command) : base(robot)
         {
             this.Command = command;
         }

@@ -109,7 +109,10 @@ namespace Robots.Core.Test.UnitTests.Programs
             for (int i = 0; i < 10; ++i)
             {
                 var mock = new Mock<IProgramCommand>();
-                mock.Setup(x => x.Execute(robot)).Callback((IRobot _) => executedCommands.Add(mock.Object));
+                mock.Setup(x => x.Execute(robot))
+                    .Returns(Task.CompletedTask)
+                    .Callback((IRobot _) => executedCommands.Add(mock.Object));
+
                 commands[i] = mock.Object;
                 program.AddCommand(commands[i]);
             }

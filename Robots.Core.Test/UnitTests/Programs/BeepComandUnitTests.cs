@@ -18,7 +18,7 @@ namespace Robots.Core.Test.UnitTests.Programs
             var command = new BeepCommand();
             var robotMock = new Mock<IRobot>();
 
-            command.Execute(robotMock.Object).RunSynchronously();
+            command.Execute(robotMock.Object).GetAwaiter().GetResult();
 
             robotMock.Verify(x => x.Beep(), Times.Once);
         }

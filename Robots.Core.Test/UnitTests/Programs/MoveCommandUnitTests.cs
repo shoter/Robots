@@ -18,7 +18,7 @@ namespace Robots.Core.Test.UnitTests.Programs
             IProgramCommand command = new MoveCommand(90);
             var robotMock = new Mock<IRobot>();
 
-            command.Execute(robotMock.Object);
+            command.Execute(robotMock.Object).GetAwaiter().GetResult();
 
             robotMock.Verify(x => x.Move(90), Times.Once);
         }

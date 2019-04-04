@@ -11,7 +11,7 @@ namespace Robots.Core.Programs
     {
         private List<IProgramCommand> CommandList { get; } = new List<IProgramCommand>();
 
-        public IEnumerable<IProgramCommand> Commands => throw new NotImplementedException();
+        public IEnumerable<IProgramCommand> Commands => CommandList;
 
         public event EventHandler<ProgramCommandEventArgs> OnCommandExecutionStart;
         public event EventHandler<ProgramCommandEventArgs> OnCommandExecutionEnd;

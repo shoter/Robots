@@ -7,7 +7,7 @@ using Robots.SDK;
 
 namespace Robots.Core.Programs
 {
-    public class BeepCommand : ICommand
+    public class BeepCommand : IProgramCommand
     {
         public string Describe() => "Beep";
 

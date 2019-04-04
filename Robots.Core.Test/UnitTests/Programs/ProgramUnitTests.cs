@@ -63,9 +63,9 @@ namespace Robots.Core.Test.UnitTests.Programs
 
             IProgramCommand[] commands = new IProgramCommand[]
             {
-                commandMock.Object,
-                commandMock.Object,
-                commandMock.Object
+                new Mock<IProgramCommand>().Object,
+                new Mock<IProgramCommand>().Object,
+                new Mock<IProgramCommand>().Object
             };
 
             foreach (var c in commands)
@@ -96,42 +96,49 @@ namespace Robots.Core.Test.UnitTests.Programs
         }
 
         [Fact]
-        public void Start_RobotShouldReceiveCommands()
-        {
-            Program program = new Program();
-            var commandMock = new Mock<IProgramCommand>();
-            var robot = new Mock<IRobot>().Object;
-
-            commandMock.Setup(c => c.Execute(robot)).Verifiable();
-
-            for(int i = 0; i < 10; ++i)
-            {
-                program.AddCommand(commandMock.Object);
-            }
-
-            program.Start(robot).RunSynchronously();
-        }
-
-        [Fact]
         public void Start_ShouldExecuteAllCommandsInOrder()
         {
+            Program program = new Program();
+            var robot = new Mock<IRobot>().Object;
 
+            const int commandsCount = 10;
+
+            var commands = new IProgramCommand[commandsCount];
+            var executedCommands = new List<IProgramCommand>();
+
+            for (int i = 0; i < 10; ++i)
+            {
+                var mock = new Mock<IProgramCommand>();
+                mock.Setup(x => x.Execute(robot)).Callback((IRobot _) => executedCommands.Add(mock.Object));
+                commands[i] = mock.Object;
+                program.AddCommand(commands[i]);
+            }
+
+            program.Start(robot).GetAwaiter().GetResult();
+            
+            for(int i = 0; i < commandsCount; ++ i)
+            {
+                Assert.True(Object.ReferenceEquals(commands[i], executedCommands[i]));
+            }
         }
 
         [Fact]
         public void OnCommandExecutionEvents_ShouldBeFiredBeforeAndAfterAllCommandExecution()
         {
             var program = new Program();
-            var commandMock = new Mock<IProgramCommand>();
             var robot = new Mock<IRobot>().Object;
 
             List<IProgramCommand> executedCommands = new List<IProgramCommand>();
             List<IProgramCommand> commands = new List<IProgramCommand>();
 
-            commandMock.Setup(c => c.Execute(robot)).Callback((IProgramCommand c) => executedCommands.Add(c));
 
             for(int i = 0; i <10;++i)
             {
+                var commandMock = new Mock<IProgramCommand>();
+                commandMock.Setup(c => c.Execute(robot))
+                    .Callback((IRobot _) => executedCommands.Add(commandMock.Object))
+                    .Returns(Task.CompletedTask);
+
                 var command = commandMock.Object;
                 commands.Add(command);
                 program.AddCommand(command);
@@ -140,7 +147,7 @@ namespace Robots.Core.Test.UnitTests.Programs
             program.OnCommandExecutionStart += (_, e) => Assert.DoesNotContain(e.Command, executedCommands);
             program.OnCommandExecutionEnd += (_, e) => Assert.Contains(e.Command, executedCommands);
 
-            program.Start(robot);
+            program.Start(robot).GetAwaiter().GetResult();
 
             foreach(var c in commands)
             {
@@ -152,16 +159,18 @@ namespace Robots.Core.Test.UnitTests.Programs
         public void OnProgramExecutionEnd_ShouldBeFiredAtEndOfProgram()
         {
             var program = new Program();
-            var commandMock = new Mock<IProgramCommand>();
             var robot = new Mock<IRobot>().Object;
 
             List<IProgramCommand> executedCommands = new List<IProgramCommand>();
             List<IProgramCommand> commands = new List<IProgramCommand>();
 
-            commandMock.Setup(c => c.Execute(robot)).Callback((IProgramCommand c) => executedCommands.Add(c));
-
             for (int i = 0; i < 10; ++i)
             {
+                var commandMock = new Mock<IProgramCommand>();
+                commandMock.Setup(c => c.Execute(robot))
+                    .Callback((IRobot _) => executedCommands.Add(commandMock.Object))
+                    .Returns(Task.CompletedTask);
+
                 var command = commandMock.Object;
                 commands.Add(command);
                 program.AddCommand(command);

@@ -14,9 +14,9 @@ namespace Robots.Core.Programs
 
         Task Start(IRobot robot);
 
-        void AddCommand(ICommand command);
-        void RemoveCommand(ICommand command);
+        void AddCommand(IProgramCommand command);
+        void RemoveCommand(IProgramCommand command);
 
-        IEnumerable<ICommand> Commands { get; }
+        IEnumerable<IProgramCommand> Commands { get; }
     }
 }

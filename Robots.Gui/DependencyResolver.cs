@@ -1,5 +1,6 @@
 ﻿using Ninject;
 using Ninject.Parameters;
+using Robots.Gui.Modules.Notifications;
 using Robots.Gui.Modules.Programs;
 using System;
 using System.Collections.Generic;
@@ -9,21 +10,26 @@ using System.Threading.Tasks;
 
 namespace Robots.Gui
 {
-    public class DependencyResolver
+    public class DependencyResolver : IDependencyResolver
     {
-        private static readonly IKernel kernel;
+        private readonly IKernel kernel;
 
-        static DependencyResolver()
+        public static IDependencyResolver Current { get; }
+
+        public DependencyResolver()
         {
             kernel = new StandardKernel(
                 new MainModule(),
-                new ProgramModule()
+                new ProgramModule(),
+                new NotificationModule()
                 );
         }
 
-        public static T Get<T>(params IParameter[] parameters)
+        public T Get<T>(params IParameter[] parameters)
         {
             return kernel.Get<T>(parameters);
         }
+
+
     }
 }

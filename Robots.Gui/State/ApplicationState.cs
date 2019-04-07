@@ -31,5 +31,11 @@ namespace Robots.Gui.State
             for(int i = 0; i <5; ++i)
             ProgramsList.Add(new Program());
         }
+
+        public void AddProgram(IProgram program) => ProgramsList.Add(program);
+
+        public void RemoveProgram(IProgram program) => ProgramsList.Remove(program);
+
+        public IProgram GetProgram(ulong programId) => ProgramsList.First(p => p.Id == programId);
     }
 }

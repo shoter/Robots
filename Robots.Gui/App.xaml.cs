@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ninject;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,6 +14,14 @@ namespace Robots.Gui
     /// </summary>
     public partial class App : Application
     {
-        
+        private IKernel kernel;
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            Current.MainWindow = kernel.Get<MainWindow>();
+            Current.MainWindow.Show();
+        }
     }
 }

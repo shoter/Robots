@@ -60,15 +60,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Base\ViewModelBase.cs" />
+    <Compile Include="Commands\ActionCommand.cs" />
     <Compile Include="DependencyResolver.cs" />
     <Compile Include="MainModule.cs" />
-    <Compile Include="Modules\Programs\ProgramList.xaml.cs">
-      <DependentUpon>ProgramList.xaml</DependentUpon>
+    <Compile Include="Modules\Notifications\INotificationService.cs" />
+    <Compile Include="Modules\Notifications\NotificationModule.cs" />
+    <Compile Include="Modules\Notifications\NotificationService.cs" />
+    <Compile Include="Modules\Programs\ProgramList\ProgramListItemEventArgs.cs" />
+    <Compile Include="Modules\Programs\IProgramService.cs" />
+    <Compile Include="Modules\Programs\ProgramList\ProgramListControl.xaml.cs">
+      <DependentUpon>ProgramListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\Programs\ProgramModule.cs" />
+    <Compile Include="Modules\Programs\ProgramService.cs" />
     <Compile Include="Modules\Programs\ProgramViewModelLocator.cs" />
-    <Compile Include="Modules\Programs\ViewModels\ProgramListItemViewModel.cs" />
-    <Compile Include="Modules\Programs\ViewModels\ProgramListViewModel.cs" />
+    <Compile Include="Modules\Programs\ProgramList\ProgramListItemViewModel.cs" />
+    <Compile Include="Modules\Programs\ProgramList\ProgramListViewModel.cs" />
     <Compile Include="RobotsException.cs" />
     <Compile Include="State\ApplicationState.cs" />
     <Compile Include="State\IApplicationState.cs" />
@@ -88,7 +96,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Modules\Programs\ProgramList.xaml">
+    <Page Include="Modules\Programs\ProgramList\ProgramListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,6 +129,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Robots.Common\Robots.Common.csproj">
+      <Project>{1F824A0E-E000-4EA2-ABE8-0302A6622086}</Project>
+      <Name>Robots.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Robots.Core\Robots.Core.csproj">
       <Project>{AD5418C3-05AC-428D-81CE-53D0F77DF8D3}</Project>
       <Name>Robots.Core</Name>

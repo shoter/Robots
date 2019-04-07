@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Robots.Core.Common;
+using Robots.Common;
 using Robots.SDK;
 
 namespace Robots.Core.Programs

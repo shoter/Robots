@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Robots.Common\Robots.Common.csproj" />
     <ProjectReference Include="..\Robots.SDK\Robots.SDK.csproj" />
   </ItemGroup>
 

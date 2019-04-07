@@ -11,5 +11,9 @@ namespace Robots.Gui.State
     {
         IEnumerable<IRobotState> Robots { get; }
         IEnumerable<IProgram> Programs { get; }
+
+        void AddProgram(IProgram program);
+        void RemoveProgram(IProgram program);
+        IProgram GetProgram(ulong programId);
     }
 }

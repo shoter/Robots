@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Robots.Gui.Modules.Programs
+namespace Robots.Gui.Modules.Programs.ProgramList
 {
     /// <summary>
     /// Interaction logic for ProgramList.xaml
     /// </summary>
-    public partial class ProgramList : UserControl
+    public partial class ProgramListControl : UserControl
     {
-        public ProgramList()
+        public ProgramListControl()
         {
             InitializeComponent();
         }

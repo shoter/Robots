@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Robots.Core.Common;
+using Robots.Common;
 using Robots.Core.Programs;
 using Robots.SDK;
 
@@ -33,8 +33,11 @@ namespace Robots.Gui.State
 
         public void AssignProgram(IProgram program)
         {
+            // This is so dirty... Waiting for C# 8.0 and non-nullable references. Then code will be super tidy!
+            Debug.Assert(program != null);
             if (CanAssignProgram() == false)
                 throw new RobotsException("Cannot assign program!");
+
             this.AssignedProgram = program;
         }
 
@@ -57,6 +60,14 @@ namespace Robots.Gui.State
 
             IsProgramRunning = false;
             AssignedProgram.OnProgramExecutionEnd -= onProgramExecutionEnd;
+        }
+
+        public void DeassignProgram()
+        {
+            if (CanAssignProgram() == false)
+                throw new RobotsException("Cannot deassign program! Program is already running!");
+
+            this.AssignedProgram = null;
         }
     }
 }

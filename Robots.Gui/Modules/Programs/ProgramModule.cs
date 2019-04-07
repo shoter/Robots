@@ -1,5 +1,5 @@
 ﻿using Ninject.Modules;
-using Robots.Gui.Modules.Programs.ViewModels;
+using Robots.Gui.Modules.Programs.ProgramList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +13,8 @@ namespace Robots.Gui.Modules.Programs
         public override void Load()
         {
             Bind<ProgramListViewModel>().ToSelf().InTransientScope();
+
+            Bind<IProgramService>().To<ProgramService>().InSingletonScope();
         }
     }
 }

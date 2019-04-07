@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Robots.Gui"
-        xmlns:programs="clr-namespace:Robots.Gui.Modules.Programs"
+        xmlns:programList="clr-namespace:Robots.Gui.Modules.Programs.ProgramList"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <StackPanel Orientation="Vertical">
@@ -19,7 +19,7 @@
             
         </Ribbon>
 
-        <programs:ProgramList x:Name="ProgramListView" Height="250" />
+        <programList:ProgramListControl x:Name="ProgramListView" Height="250" />
 
     </StackPanel>
 </Window>

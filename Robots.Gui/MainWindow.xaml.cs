@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Robots.Gui.Modules.Programs.ProgramList;
+using Robots.Gui.Modules.Programs.ProgramsSection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,15 +22,22 @@ namespace Robots.Gui
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(ProgramSectionViewModel vm)
         {
             InitializeComponent();
+
+            this.DataContext = vm;
         }
 
         private void RibbonApplicationMenu_Loaded(object sender, RoutedEventArgs e)
         {
             var grid = (RibbonApplicationMenu.Template.FindName("MainPaneBorder", RibbonApplicationMenu) as Border).Parent as Grid;
             grid.ColumnDefinitions[2].Width = new GridLength(0);
+        }
+
+        private void ProgramListView_ProgramSelected(object sender, ProgramListItemEventArgs e)
+        {
+
         }
     }
 }

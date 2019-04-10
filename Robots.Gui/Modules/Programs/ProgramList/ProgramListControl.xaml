@@ -8,11 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800"
              >
 
-    <UserControl.Resources>
-        <programs:ProgramViewModelLocator x:Key="ViewModelLocator" />
-    </UserControl.Resources>
-
-    <ListView Name="ProgramListView" ItemsSource="{Binding ProgramList.Programs, Source={StaticResource ViewModelLocator}}">
+    <ListView Name="ProgramListView" ItemsSource="{Binding Programs}">
         <ListView.View>
             <GridView>
                 <GridViewColumn Width="150" Header="Name" DisplayMemberBinding="{Binding Name}" />
@@ -26,5 +22,10 @@
                           CommandParameter="{Binding}" />
             </ContextMenu>
         </ListView.ContextMenu>
+        <ListView.ItemContainerStyle>
+            <Style TargetType="ListViewItem">
+                <EventSetter Event="PreviewMouseLeftButtonDown" Handler="onProgramSelected" />
+            </Style>
+        </ListView.ItemContainerStyle>
     </ListView>
 </UserControl>

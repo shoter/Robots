@@ -12,6 +12,8 @@ namespace Robots.Gui.State
 {
     public class RobotState : IRobotState
     {
+        public string Name { get; set; }
+
         public ulong Id { get; }
 
         private static UniqueIdGenerator uniqueId = new UniqueIdGenerator();
@@ -29,6 +31,7 @@ namespace Robots.Gui.State
             this.Robot = robot;
             this.RobotLog = robotLog;
             this.Id = uniqueId.Id;
+            this.Name = $"Robot {Id}";
         }
 
         public void AssignProgram(IProgram program)

@@ -13,26 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Robots.Gui.Modules.Programs.ProgramList
+namespace Robots.Gui.Modules.Programs.AddProgram
 {
     /// <summary>
-    /// Interaction logic for ProgramList.xaml
+    /// Interaction logic for AddProgramControl.xaml
     /// </summary>
-    public partial class ProgramListControl : UserControl
+    public partial class AddProgramControl : UserControl
     {
-
-        public ProgramListControl()
+        public AddProgramControl()
         {
             InitializeComponent();
         }
-
-        private void onProgramSelected(object sender, MouseButtonEventArgs e)
-        {
-            var item = (sender as ListViewItem).DataContext as ProgramListItemViewModel;
-
-            if (item.SelectProgram.CanExecute(item))
-                item.SelectProgram.Execute(item);
-        }
-
     }
 }

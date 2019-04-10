@@ -1,4 +1,5 @@
-﻿using Robots.Gui.Modules.Notifications;
+﻿using Ninject;
+using Robots.Gui.Modules.Notifications;
 using Robots.Gui.State;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,21 @@ namespace Robots.Gui.Modules.Programs.ProgramList
     public class ProgramListViewModel
     {
         public ObservableCollection<ProgramListItemViewModel> Programs { get; } = new ObservableCollection<ProgramListItemViewModel>();
+        public event EventHandler<ProgramListItemEventArgs> ProgramRemove;
+        public event EventHandler<ProgramListItemEventArgs> ProgramSelect;
 
         private readonly IProgramService programService;
         private readonly INotificationService notificationService;
 
+        
+        /// <summary>
+        /// This constructor is ignored by ninject.
+        /// </summary>
+        public ProgramListViewModel()
+        {
+        }
+
+        [Inject]
         public ProgramListViewModel(IApplicationState state, IProgramService programService, INotificationService notificationService)
         {
             this.programService = programService;
@@ -28,7 +40,8 @@ namespace Robots.Gui.Modules.Programs.ProgramList
                 var vm = new ProgramListItemViewModel(p);
                 Programs.Add(vm);
 
-                vm.OnProgramRemoval += onProgramItemRemoval;
+                vm.ProgramRemove += onProgramItemRemoval;
+                vm.ProgramSelect += onProgramItemSelect;
             }
         }
 
@@ -43,6 +56,12 @@ namespace Robots.Gui.Modules.Programs.ProgramList
             }
 
             programService.RemoveProgram(e.Item.Id);
+            ProgramRemove?.Invoke(this, e);
+        }
+
+        private void onProgramItemSelect(object sender, ProgramListItemEventArgs e)
+        {
+            ProgramSelect?.Invoke(this, e);
         }
     }
 }

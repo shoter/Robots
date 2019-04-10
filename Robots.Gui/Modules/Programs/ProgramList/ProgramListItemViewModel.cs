@@ -12,8 +12,12 @@ namespace Robots.Gui.Modules.Programs.ProgramList
 {
     public class ProgramListItemViewModel
     {
-        public event EventHandler<ProgramListItemEventArgs> OnProgramRemoval;
+        public event EventHandler<ProgramListItemEventArgs> ProgramRemove;
+        public event EventHandler<ProgramListItemEventArgs> ProgramSelect;
+
         public ICommand RemoveProgram { get; }
+        public ICommand SelectProgram { get; }
+
         private IProgram program;
 
         public string Name
@@ -30,13 +34,21 @@ namespace Robots.Gui.Modules.Programs.ProgramList
             this.program = program;
 
             this.RemoveProgram = new ActionCommand<ProgramListItemViewModel>(this.onRemoveProgram);
+            this.SelectProgram = new ActionCommand<ProgramListItemViewModel>(this.onSelectProgram);
         }
 
         private void onRemoveProgram(ProgramListItemViewModel item)
         {
             Debug.Assert(this == item);
 
-            OnProgramRemoval?.Invoke(this, new ProgramListItemEventArgs(item));
+            ProgramRemove?.Invoke(this, new ProgramListItemEventArgs(item));
+        }
+
+        private void onSelectProgram(ProgramListItemViewModel item)
+        {
+            Debug.Assert(this == item);
+
+            ProgramSelect?.Invoke(this, new ProgramListItemEventArgs(item));
         }
     }
 }

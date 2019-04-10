@@ -33,7 +33,7 @@ namespace Robots.Gui.Test.UnitTests.Modules.Programs.ProgramList
         {
             var itemVm = new ProgramListItemViewModel(new Mock<IProgram>().Object);
 
-            itemVm.OnProgramRemoval += (sender, e) =>
+            itemVm.ProgramRemove += (sender, e) =>
             {
                 Assert.Equal(sender, itemVm);
                 Assert.Equal(e.Item, itemVm);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robots.Core.Programs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,9 @@ namespace Robots.Gui.Modules.Programs.ProgramList
     {
         public ProgramListItemViewModel Item { get; set; }
 
-        public ProgramListItemEventArgs(ProgramListItemViewModel vm)
+        public ProgramListItemEventArgs(ProgramListItemViewModel item)
         {
-            this.Item = vm;
+            this.Item = item;
         }
 
     }

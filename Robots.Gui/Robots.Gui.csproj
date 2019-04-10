@@ -62,11 +62,23 @@
     </ApplicationDefinition>
     <Compile Include="Base\ViewModelBase.cs" />
     <Compile Include="Commands\ActionCommand.cs" />
-    <Compile Include="DependencyResolver.cs" />
     <Compile Include="MainModule.cs" />
     <Compile Include="Modules\Notifications\INotificationService.cs" />
     <Compile Include="Modules\Notifications\NotificationModule.cs" />
     <Compile Include="Modules\Notifications\NotificationService.cs" />
+    <Compile Include="Modules\Programs\AddProgram\AddProgramControl.xaml.cs">
+      <DependentUpon>AddProgramControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Programs\AddProgram\AddProgramViewModel.cs" />
+    <Compile Include="Modules\Programs\AddProgram\AddProgramAddEventArgs.cs" />
+    <Compile Include="Modules\Programs\AddProgram\CommandList\CommandListState.cs" />
+    <Compile Include="Modules\Programs\AddProgram\CommandList\CommandListBaseViewModel.cs" />
+    <Compile Include="Modules\Programs\AddProgram\CommandList\CommandListControl.xaml.cs">
+      <DependentUpon>CommandListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Programs\AddProgram\CommandList\CommandListStateEventArgs.cs" />
+    <Compile Include="Modules\Programs\AddProgram\CommandList\MoveCommandViewModel.cs" />
+    <Compile Include="Modules\Programs\AddProgram\CommandList\TurnCommandViewModel.cs" />
     <Compile Include="Modules\Programs\ProgramList\ProgramListItemEventArgs.cs" />
     <Compile Include="Modules\Programs\IProgramService.cs" />
     <Compile Include="Modules\Programs\ProgramList\ProgramListControl.xaml.cs">
@@ -74,10 +86,19 @@
     </Compile>
     <Compile Include="Modules\Programs\ProgramModule.cs" />
     <Compile Include="Modules\Programs\ProgramService.cs" />
-    <Compile Include="Modules\Programs\ProgramViewModelLocator.cs" />
     <Compile Include="Modules\Programs\ProgramList\ProgramListItemViewModel.cs" />
     <Compile Include="Modules\Programs\ProgramList\ProgramListViewModel.cs" />
+    <Compile Include="Modules\Programs\ProgramsSection\ProgramSectionControl.xaml.cs">
+      <DependentUpon>ProgramSectionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Programs\ProgramsSection\ProgramSectionViewModel.cs" />
+    <Compile Include="Modules\Programs\ProgramView\ProgramViewCommandViewModel.cs" />
+    <Compile Include="Modules\Programs\ProgramView\ProgramViewControl.xaml.cs">
+      <DependentUpon>ProgramViewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Programs\ProgramView\ProgramViewViewModel.cs" />
     <Compile Include="RobotsException.cs" />
+    <Compile Include="RobotsKernel.cs" />
     <Compile Include="State\ApplicationState.cs" />
     <Compile Include="State\IApplicationState.cs" />
     <Compile Include="State\IRobotLog.cs" />
@@ -96,7 +117,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Modules\Programs\AddProgram\AddProgramControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Programs\AddProgram\CommandList\CommandListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\Programs\ProgramList\ProgramListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Programs\ProgramsSection\ProgramSectionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Programs\ProgramView\ProgramViewControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -142,6 +179,8 @@
       <Name>Robots.SDK</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

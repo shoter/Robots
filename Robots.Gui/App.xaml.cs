@@ -1,4 +1,6 @@
 ﻿using Ninject;
+using Robots.Gui.Modules.Notifications;
+using Robots.Gui.Modules.Programs;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,6 +21,8 @@ namespace Robots.Gui
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+            kernel = new RobotsKernel();
 
             Current.MainWindow = kernel.Get<MainWindow>();
             Current.MainWindow.Show();

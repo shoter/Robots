@@ -25,7 +25,6 @@ namespace Robots.Gui.Commands
 
         public bool CanExecute(object parameter)
         {
-            Debug.Assert(parameter is T);
             return true;
         }
 

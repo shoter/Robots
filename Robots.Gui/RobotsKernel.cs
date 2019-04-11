@@ -1,6 +1,7 @@
 ﻿using Ninject;
 using Robots.Gui.Modules.Notifications;
 using Robots.Gui.Modules.Programs;
+using Robots.Gui.Modules.Programs.AddProgram;
 using System;
 using System.Collections.Generic;
 using System.Linq;

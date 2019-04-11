@@ -70,15 +70,32 @@
       <DependentUpon>AddProgramControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\Programs\AddProgram\AddProgramViewModel.cs" />
-    <Compile Include="Modules\Programs\AddProgram\AddProgramAddEventArgs.cs" />
+    <Compile Include="Modules\Programs\AddProgram\CommandList\AddCommandEventArgs.cs" />
+    <Compile Include="Modules\Programs\AddProgram\CommandList\CommandListFactory.cs" />
     <Compile Include="Modules\Programs\AddProgram\CommandList\CommandListState.cs" />
     <Compile Include="Modules\Programs\AddProgram\CommandList\CommandListBaseViewModel.cs" />
     <Compile Include="Modules\Programs\AddProgram\CommandList\CommandListControl.xaml.cs">
       <DependentUpon>CommandListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\Programs\AddProgram\CommandList\CommandListStateEventArgs.cs" />
+    <Compile Include="Modules\Programs\AddProgram\CommandList\CommandListViewModel.cs" />
+    <Compile Include="Modules\Programs\AddProgram\CommandList\CommandMoveControl.xaml.cs">
+      <DependentUpon>CommandMoveControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Programs\AddProgram\CommandList\CommandMoveViewModel.cs" />
+    <Compile Include="Modules\Programs\AddProgram\CommandList\CommandTurnControl.xaml.cs">
+      <DependentUpon>CommandTurnControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Programs\AddProgram\CommandList\CommandTurnViewModel.cs" />
+    <Compile Include="Modules\Programs\AddProgram\CommandList\ICommandListFactory.cs" />
     <Compile Include="Modules\Programs\AddProgram\CommandList\MoveCommandViewModel.cs" />
     <Compile Include="Modules\Programs\AddProgram\CommandList\TurnCommandViewModel.cs" />
+    <Compile Include="Modules\Programs\ProgramCommandList\ProgramCommandItemEventArgs.cs" />
+    <Compile Include="Modules\Programs\ProgramCommandList\ProgramCommandListControl.xaml.cs">
+      <DependentUpon>ProgramCommandListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Programs\ProgramCommandList\ProgramCommandListItemViewModel.cs" />
+    <Compile Include="Modules\Programs\ProgramCommandList\ProgramCommandListViewModel.cs" />
     <Compile Include="Modules\Programs\ProgramList\ProgramListItemEventArgs.cs" />
     <Compile Include="Modules\Programs\IProgramService.cs" />
     <Compile Include="Modules\Programs\ProgramList\ProgramListControl.xaml.cs">
@@ -122,6 +139,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\Programs\AddProgram\CommandList\CommandListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Programs\AddProgram\CommandList\CommandMoveControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Programs\AddProgram\CommandList\CommandTurnControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Programs\ProgramCommandList\ProgramCommandListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

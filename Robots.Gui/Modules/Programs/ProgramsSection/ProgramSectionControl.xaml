@@ -8,6 +8,10 @@
              xmlns:programView="clr-namespace:Robots.Gui.Modules.Programs.ProgramView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <local:ProgramSectionViewModel/>
+    </UserControl.DataContext>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -17,7 +21,7 @@
 
         <programList:ProgramListControl DataContext="{Binding ProgramList}" />
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch"/>
-        <programView:ProgramViewControl Grid.Column="2" />
+        <programView:ProgramViewControl DataContext="{Binding ProgramView}" Grid.Column="2" />
 
     </Grid>
 </UserControl>

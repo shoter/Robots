@@ -49,5 +49,10 @@ namespace Robots.Gui.Modules.Programs
 
             State.RemoveProgram(State.GetProgram(programId));
         }
+
+        public virtual IProgram GetProgram(ulong programId)
+        {
+            return State.GetProgram(programId);
+        }
     }
 }

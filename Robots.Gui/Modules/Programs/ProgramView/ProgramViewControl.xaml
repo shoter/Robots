@@ -4,9 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Robots.Gui.Modules.Programs.ProgramView"
+             xmlns:addProgram="clr-namespace:Robots.Gui.Modules.Programs.AddProgram"
+             xmlns:programCommandList="clr-namespace:Robots.Gui.Modules.Programs.ProgramCommandList"
              mc:Ignorable="d"
              Background="White"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <local:ProgramViewViewModel/>
+    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -19,19 +24,7 @@
             <Label>Commands</Label>
         </StackPanel>
 
-        <ListView Grid.Row="1">
-            asd
-            asd
-        </ListView>
-
-        <StackPanel Orientation="Vertical" Grid.Row="2" HorizontalAlignment="Center">
-            <Label>Add new command</Label>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button>Move</Button>
-                <Button>Turn</Button>
-                <Button>Beep</Button>
-            </StackPanel>
-        </StackPanel>
-
+        <programCommandList:ProgramCommandListControl Grid.Row="1" DataContext="{Binding ProgramCommandList}" />
+        <addProgram:AddProgramControl DataContext="{Binding AddProgram}" Grid.Row="2" Margin="0,0,0,10"/>
     </Grid>
 </UserControl>

@@ -1,4 +1,5 @@
-﻿using Robots.Gui.Base;
+﻿using Robots.Core.Programs;
+using Robots.Gui.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,17 @@ namespace Robots.Gui.Modules.Programs.AddProgram.CommandList
 {
     public abstract class CommandListBaseViewModel : ViewModelBase
     {
-        public event EventHandler<AddProgramAddEventArgs> AddProgram;
+        public event EventHandler<AddCommandEventArgs> AddProgram;
         public event EventHandler<CommandListStateEventArgs> Transition;
+
+        protected void AddProgramInvoke(IProgramCommand command)
+        {
+            AddProgram?.Invoke(this, new AddCommandEventArgs(command));
+        }
+
+        protected void TransitionInvoke(CommandListState newState)
+        {
+            Transition?.Invoke(this, new CommandListStateEventArgs(newState));
+        }
     }
 }

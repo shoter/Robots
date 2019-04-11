@@ -17,5 +17,13 @@ namespace Robots.Gui.Base
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        protected void NotifyPropertiesChanged(params string[] propertyNames)
+        {
+            foreach(var p in propertyNames)
+            {
+                NotifyPropertyChanged(p);
+            }
+        }
     }
 }

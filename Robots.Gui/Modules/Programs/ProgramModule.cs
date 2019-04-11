@@ -1,4 +1,6 @@
 ﻿using Ninject.Modules;
+using Robots.Gui.Modules.Programs.AddProgram;
+using Robots.Gui.Modules.Programs.AddProgram.CommandList;
 using Robots.Gui.Modules.Programs.ProgramList;
 using Robots.Gui.Modules.Programs.ProgramsSection;
 using System;
@@ -15,8 +17,10 @@ namespace Robots.Gui.Modules.Programs
         {
             Bind<ProgramListViewModel>().ToSelf().InTransientScope();
             Bind<ProgramSectionViewModel>().ToSelf().InTransientScope();
+            Bind<AddProgramViewModel>().ToSelf().InTransientScope();
 
             Bind<IProgramService>().To<ProgramService>().InSingletonScope();
+            Bind<ICommandListFactory>().To<CommandListFactory>().InSingletonScope();
         }
     }
 }

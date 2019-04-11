@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="UiTests.cs\Modules\Programs\ProgramListControlTests.cs" />
     <Compile Include="UiTests.cs\UITestBase.cs" />
+    <Compile Include="UnitTests\Modules\Programs\ProgramCommandList\ProgramCommandListViewModelTests.cs" />
     <Compile Include="UnitTests\Modules\Programs\ProgramList\ProgramListItemViewModelTests.cs" />
     <Compile Include="UnitTests\Modules\Programs\ProgramList\ProgramListViewModelTests.cs" />
     <Compile Include="UnitTests\Modules\Programs\ProgramServiceTests.cs" />

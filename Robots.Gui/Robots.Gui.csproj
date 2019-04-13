@@ -62,7 +62,11 @@
     </ApplicationDefinition>
     <Compile Include="Base\ViewModelBase.cs" />
     <Compile Include="Commands\ActionCommand.cs" />
+    <Compile Include="Helpers\ButtonHelper.cs" />
+    <Compile Include="Helpers\IUserControlProxy.cs" />
+    <Compile Include="Helpers\UserControlProxy.cs" />
     <Compile Include="MainModule.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Modules\Notifications\INotificationService.cs" />
     <Compile Include="Modules\Notifications\NotificationModule.cs" />
     <Compile Include="Modules\Notifications\NotificationService.cs" />
@@ -88,14 +92,17 @@
     </Compile>
     <Compile Include="Modules\Programs\AddProgram\CommandList\CommandTurnViewModel.cs" />
     <Compile Include="Modules\Programs\AddProgram\CommandList\ICommandListFactory.cs" />
-    <Compile Include="Modules\Programs\AddProgram\CommandList\MoveCommandViewModel.cs" />
-    <Compile Include="Modules\Programs\AddProgram\CommandList\TurnCommandViewModel.cs" />
+    <Compile Include="Modules\Programs\AddProgram\IAddProgramViewModel.cs" />
+    <Compile Include="Modules\Programs\ProgramCommandList\IProgramCommandListViewModel.cs" />
+    <Compile Include="Modules\Programs\ProgramCommandList\IProgramCommandListItemViewModel.cs" />
     <Compile Include="Modules\Programs\ProgramCommandList\ProgramCommandItemEventArgs.cs" />
     <Compile Include="Modules\Programs\ProgramCommandList\ProgramCommandListControl.xaml.cs">
       <DependentUpon>ProgramCommandListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\Programs\ProgramCommandList\ProgramCommandListItemViewModel.cs" />
     <Compile Include="Modules\Programs\ProgramCommandList\ProgramCommandListViewModel.cs" />
+    <Compile Include="Modules\Programs\ProgramList\IProgramListItemViewModel.cs" />
+    <Compile Include="Modules\Programs\ProgramList\IProgramListViewModel.cs" />
     <Compile Include="Modules\Programs\ProgramList\ProgramListItemEventArgs.cs" />
     <Compile Include="Modules\Programs\IProgramService.cs" />
     <Compile Include="Modules\Programs\ProgramList\ProgramListControl.xaml.cs">
@@ -105,10 +112,12 @@
     <Compile Include="Modules\Programs\ProgramService.cs" />
     <Compile Include="Modules\Programs\ProgramList\ProgramListItemViewModel.cs" />
     <Compile Include="Modules\Programs\ProgramList\ProgramListViewModel.cs" />
+    <Compile Include="Modules\Programs\ProgramsSection\IProgramSectionViewModel.cs" />
     <Compile Include="Modules\Programs\ProgramsSection\ProgramSectionControl.xaml.cs">
       <DependentUpon>ProgramSectionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\Programs\ProgramsSection\ProgramSectionViewModel.cs" />
+    <Compile Include="Modules\Programs\ProgramView\IProgramViewViewModel.cs" />
     <Compile Include="Modules\Programs\ProgramView\ProgramViewCommandViewModel.cs" />
     <Compile Include="Modules\Programs\ProgramView\ProgramViewControl.xaml.cs">
       <DependentUpon>ProgramViewControl.xaml</DependentUpon>
@@ -120,6 +129,7 @@
     <Compile Include="State\IApplicationState.cs" />
     <Compile Include="State\IRobotLog.cs" />
     <Compile Include="State\IRobotState.cs" />
+    <Compile Include="State\ProgramFactory.cs" />
     <Compile Include="State\RobotLog.cs" />
     <Compile Include="State\RobotState.cs" />
     <Page Include="MainWindow.xaml">

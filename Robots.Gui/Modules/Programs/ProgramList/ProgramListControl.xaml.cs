@@ -30,8 +30,8 @@ namespace Robots.Gui.Modules.Programs.ProgramList
         {
             var item = (sender as ListViewItem).DataContext as ProgramListItemViewModel;
 
-            if (item.SelectProgram.CanExecute(item))
-                item.SelectProgram.Execute(item);
+            if (ProgramListItemViewModel.SelectProgram.CanExecute(item))
+                ProgramListItemViewModel.SelectProgram.Execute(item);
         }
 
     }

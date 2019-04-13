@@ -39,7 +39,7 @@ namespace Robots.Gui.Test.UnitTests.Modules.Programs.ProgramList
                 Assert.Equal(e.Item, itemVm);
             };
 
-            itemVm.RemoveProgram.Execute(itemVm);
+            ProgramListItemViewModel.RemoveProgram.Execute(itemVm);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Robots.Gui.Modules.Programs.AddProgram.CommandList
         {
             MoveCommand = new ActionCommand<CommandListViewModel>(x => TransitionInvoke(CommandListState.Move));
             TurnCommand = new ActionCommand<CommandListViewModel>(x => x.TransitionInvoke(CommandListState.Turn));
-            BeepCommand = new ActionCommand<CommandListViewModel>(x => x.AddProgramInvoke(new BeepCommand()));
+            BeepCommand = new ActionCommand<CommandListViewModel>(x => x.AddCommandInvoke(new BeepCommand()));
         }
     }
 }

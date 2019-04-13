@@ -4,9 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:programs="clr-namespace:Robots.Gui.Modules.Programs"
+             xmlns:local="clr-namespace:Robots.Gui.Modules.Programs.ProgramList"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              >
+    <UserControl.DataContext>
+        <local:ProgramListViewModel/>
+    </UserControl.DataContext>
 
     <ListView Name="ProgramListView" ItemsSource="{Binding Programs}">
         <ListView.View>
@@ -20,6 +24,9 @@
                           Command="{Binding RemoveProgram}"
                           DataContext="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                           CommandParameter="{Binding}" />
+                <MenuItem Header="New Program"
+                          Command="{x:Static local:ProgramListViewModel.NewProgramCommand}"
+                          CommandParameter="{Binding}"/>
             </ContextMenu>
         </ListView.ContextMenu>
         <ListView.ItemContainerStyle>

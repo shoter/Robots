@@ -21,7 +21,7 @@
 
         <programList:ProgramListControl DataContext="{Binding ProgramList}" />
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch"/>
-        <programView:ProgramViewControl DataContext="{Binding ProgramView}" Grid.Column="2" />
+        <programView:ProgramViewControl Visibility="{Binding CanShow}" DataContext="{Binding ProgramView}" Grid.Column="2" />
 
     </Grid>
 </UserControl>

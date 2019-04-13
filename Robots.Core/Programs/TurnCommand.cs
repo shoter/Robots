@@ -9,15 +9,15 @@ namespace Robots.Core.Programs
 {
     public class TurnCommand : IProgramCommand
     {
-        private double angle;
+        public double Angle { get; }
 
         public TurnCommand(double angle)
         {
-            this.angle = angle;
+            this.Angle = angle;
         }
 
-        public string Describe() => $"Turn by angle of {angle}";
+        public string Describe() => $"Turn by angle of {Angle}";
 
-        public Task Execute(IRobot robot) => robot.Turn(angle);
+        public Task Execute(IRobot robot) => robot.Turn(Angle);
     }
 }

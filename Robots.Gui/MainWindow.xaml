@@ -7,13 +7,25 @@
         xmlns:programsSection="clr-namespace:Robots.Gui.Modules.Programs.ProgramsSection"
         xmlns:programList="clr-namespace:Robots.Gui.Modules.Programs.ProgramList"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Robots" Height="450" Width="800">
     <Window.DataContext>
         <programsSection:ProgramSectionViewModel/>
     </Window.DataContext>
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="15,5,15,5" />
+            <Setter Property="FontSize" Value="15" />
+        </Style>
+    </Window.Resources>
     
-    <StackPanel Orientation="Vertical">
-        <Ribbon Name="Ribbon" SelectedIndex="0">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Ribbon Name="Ribbon" SelectedIndex="0" Height="45" Loaded="Ribbon_Loaded" >
             <Ribbon.ApplicationMenu>
                 <RibbonApplicationMenu Name="RibbonApplicationMenu" AllowDrop="false" Loaded="RibbonApplicationMenu_Loaded" >
                     <RibbonApplicationMenuItem Header="Robot List" />
@@ -25,8 +37,8 @@
         </Ribbon>
 
 
-        <programsSection:ProgramSectionControl DataContext="{Binding}" />
+        <programsSection:ProgramSectionControl Grid.Row="1" DataContext="{Binding}" />
 
 
-    </StackPanel>
+    </Grid>
 </Window>

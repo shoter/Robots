@@ -17,15 +17,25 @@ namespace Robots.Gui.Commands
         }
 
         private readonly Action<T> action;
+        private readonly Func<T, bool> canExecute;
 
         public ActionCommand(Action<T> action)
         {
             this.action = action;
         }
 
+        public ActionCommand(Action<T> action, Func<T, bool> canExecute)
+            : this(action)
+        {
+            this.canExecute = canExecute;
+        }
+
         public bool CanExecute(object parameter)
         {
-            return true;
+            if (canExecute != null && parameter == null)
+                return false;
+
+            return canExecute?.Invoke((T) parameter) ?? true;
         }
 
         public void Execute(object parameter)

@@ -9,5 +9,5 @@
     <UserControl.DataContext>
         <local:AddProgramViewModel/>
     </UserControl.DataContext>
-    <ContentPresenter Content="{Binding CommandAddControl}" />
+    <ContentPresenter Content="{Binding CommandAddControl.UserControl}" />
 </UserControl>

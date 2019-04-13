@@ -1,4 +1,5 @@
 ﻿using Robots.Gui.Base;
+using Robots.Gui.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,6 @@ namespace Robots.Gui.Modules.Programs.AddProgram.CommandList
     {
         CommandListBaseViewModel CreateViewModel(CommandListState state);
 
-        UserControl CreateControl(CommandListState state);
+        IUserControlProxy CreateControl(CommandListState state);
     }
 }

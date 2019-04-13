@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace Robots.Gui.Modules.Programs.ProgramCommandList
 {
-    public class  ProgramCommandListItemViewModel
+    public class  ProgramCommandListItemViewModel : IProgramCommandListItemViewModel
     {
         private readonly IProgramCommand command;
 

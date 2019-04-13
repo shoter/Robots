@@ -1,5 +1,6 @@
 ﻿using Ninject;
 using Robots.Gui.Base;
+using Robots.Gui.Helpers;
 using Robots.Gui.Modules.Programs.AddProgram.CommandList;
 using System;
 using System.Collections.Generic;
@@ -11,13 +12,13 @@ using System.Windows.Controls;
 
 namespace Robots.Gui.Modules.Programs.AddProgram
 {
-    public class AddProgramViewModel : ViewModelBase
+    public class AddProgramViewModel : ViewModelBase, IAddProgramViewModel
     {
-        public event EventHandler<AddCommandEventArgs> AddProgram;
+        public event EventHandler<AddCommandEventArgs> AddCommand;
 
         public CommandListBaseViewModel CommandAddViewModel { get; private set; }
 
-        public UserControl CommandAddControl { get; private set; }
+        public IUserControlProxy CommandAddControl { get; private set; }
 
 
         public CommandListState CommandState { get; private set; } = CommandListState.Buttons;
@@ -34,12 +35,11 @@ namespace Robots.Gui.Modules.Programs.AddProgram
         public AddProgramViewModel()
         {
             CommandAddViewModel = new CommandListViewModel();
-            CommandAddControl = new CommandListControl();
+            CommandAddControl = new CommandListControl().AsProxy();
         }
 
-        private void onStateChange(object sender, CommandListStateEventArgs e )
+        private void onStateChange(object sender, CommandListStateEventArgs e)
         {
-            Debug.Assert(sender == CommandAddViewModel);
             var state = e.State;
 
             CommandAddViewModel.Transition -= onStateChange;
@@ -62,10 +62,9 @@ namespace Robots.Gui.Modules.Programs.AddProgram
 
         private void onCommandAdd(object sender, AddCommandEventArgs e)
         {
-            Debug.Assert(sender == CommandAddViewModel);
             var command = e.Command;
 
-            AddProgram?.Invoke(this, e);
+            AddCommand?.Invoke(this, e);
         }
 
     }

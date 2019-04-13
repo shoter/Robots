@@ -14,7 +14,7 @@ namespace Robots.Gui.Modules.Programs.AddProgram.CommandList
         public event EventHandler<AddCommandEventArgs> AddProgram;
         public event EventHandler<CommandListStateEventArgs> Transition;
 
-        protected void AddProgramInvoke(IProgramCommand command)
+        protected void AddCommandInvoke(IProgramCommand command)
         {
             AddProgram?.Invoke(this, new AddCommandEventArgs(command));
         }

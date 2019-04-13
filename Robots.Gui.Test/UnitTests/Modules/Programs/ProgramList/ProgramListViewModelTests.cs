@@ -20,7 +20,10 @@ namespace Robots.Gui.Test.UnitTests.Modules.Programs.ProgramList
         private readonly List<IProgram> programs = new List<IProgram>();
 
         private readonly Mock<IProgramService> programServiceMock = new Mock<IProgramService>();
+        private readonly Mock<IProgramFactory> programFactory = new Mock<IProgramFactory>();
         private readonly INotificationService notificationService = new Mock<INotificationService>().Object;
+
+        private ProgramListViewModel viewModel;
 
         public ProgramListViewModelTests()
         {
@@ -32,45 +35,18 @@ namespace Robots.Gui.Test.UnitTests.Modules.Programs.ProgramList
             }
 
             stateMock.SetupGet(x => x.Programs).Returns(programs);
+
+            viewModel = new ProgramListViewModel(stateMock.Object, programServiceMock.Object, programFactory.Object, notificationService);
         }
 
         [Fact]
         public void AfterConstructor_ProgramsShouldBeTakenFromState()
         {
-            var vm = new ProgramListViewModel(stateMock.Object, programServiceMock.Object, notificationService);
-
             foreach(var p in programs)
             {
                 // order is not important.
-                Assert.Contains(vm.Programs, ivm => ivm.Id == p.Id);
+                Assert.Contains(viewModel.Programs, ivm => ivm.Id == p.Id);
             }
-        }
-
-        [Fact]
-        public void OnTriggeringItemRemovalOnChild_ShouldRemoveProgramIfItCan()
-        {
-            var vm = new ProgramListViewModel(stateMock.Object, programServiceMock.Object, notificationService);
-            var program = vm.Programs.First();
-            programServiceMock.Setup(x => x.CanRemoveProgram(program.Id)).Returns(true);
-
-            program.RemoveProgram.Execute(program);
-
-            programServiceMock.Verify(x => x.RemoveProgram(program.Id), Times.Once);
-        }
-
-        [Fact]
-        public void OnTriggeringItemRemovalOnChild_ShouldNotRemoveProgramIfItCannot()
-        {
-            var vm = new ProgramListViewModel(stateMock.Object, programServiceMock.Object, notificationService);
-            var program = vm.Programs.First();
-            programServiceMock.Setup(x => x.CanRemoveProgram(program.Id)).Returns(false);
-
-            program.RemoveProgram.Execute(program);
-
-            programServiceMock.Verify(x => x.RemoveProgram(program.Id), Times.Never);
-
-            // I am not testing if notification service displayed any warning
-            // It's implementation detail and for me is not required feature for the method to run.
         }
     }
 }

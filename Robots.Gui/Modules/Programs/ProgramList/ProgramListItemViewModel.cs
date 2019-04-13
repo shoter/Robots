@@ -1,4 +1,5 @@
 ﻿using Robots.Core.Programs;
+using Robots.Gui.Base;
 using Robots.Gui.Commands;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,13 @@ using System.Windows.Input;
 
 namespace Robots.Gui.Modules.Programs.ProgramList
 {
-    public class ProgramListItemViewModel
+    public class ProgramListItemViewModel : ViewModelBase, IProgramListItemViewModel
     {
         public event EventHandler<ProgramListItemEventArgs> ProgramRemove;
         public event EventHandler<ProgramListItemEventArgs> ProgramSelect;
 
-        public ICommand RemoveProgram { get; }
-        public ICommand SelectProgram { get; }
+        public static ICommand RemoveProgram { get; }
+        public static ICommand SelectProgram { get; }
 
         private IProgram program;
 
@@ -28,27 +29,36 @@ namespace Robots.Gui.Modules.Programs.ProgramList
 
         public ulong Id => program.Id;
 
+        static ProgramListItemViewModel()
+        {
+            RemoveProgram = new ActionCommand<ProgramListItemViewModel>(onRemoveProgram);
+            SelectProgram = new ActionCommand<ProgramListItemViewModel>(onSelectProgram);
+        }
 
         public ProgramListItemViewModel(IProgram program)
         {
             this.program = program;
 
-            this.RemoveProgram = new ActionCommand<ProgramListItemViewModel>(this.onRemoveProgram);
-            this.SelectProgram = new ActionCommand<ProgramListItemViewModel>(this.onSelectProgram);
+            program.PropertyChanged += Program_PropertyChanged;
+
         }
 
-        private void onRemoveProgram(ProgramListItemViewModel item)
+        private void Program_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            Debug.Assert(this == item);
-
-            ProgramRemove?.Invoke(this, new ProgramListItemEventArgs(item));
+            if(e.PropertyName == nameof(program.Name))
+            {
+                NotifyPropertiesChanged(nameof(Name));
+            }
         }
 
-        private void onSelectProgram(ProgramListItemViewModel item)
+        private static void onRemoveProgram(ProgramListItemViewModel item)
         {
-            Debug.Assert(this == item);
+            item.ProgramRemove?.Invoke(item, new ProgramListItemEventArgs(item));
+        }        
 
-            ProgramSelect?.Invoke(this, new ProgramListItemEventArgs(item));
+        private static void onSelectProgram(ProgramListItemViewModel item)
+        {
+            item.ProgramSelect?.Invoke(item, new ProgramListItemEventArgs(item));
         }
     }
 }

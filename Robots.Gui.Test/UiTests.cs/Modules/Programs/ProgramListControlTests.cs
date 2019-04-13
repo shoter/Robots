@@ -28,7 +28,7 @@ namespace Robots.Gui.Test.UiTestscs.Modules.Programs
         [Fact]
         public void ProgramList_ShouldDisplayNameOfPrograms()
         {
-            var applicationPath = Path.Combine(typeof(Robots.Gui.App).Assembly.CodeBase);
+            /*var applicationPath = Path.Combine(typeof(Robots.Gui.App).Assembly.CodeBase);
 
             if(applicationPath.StartsWith("file:///"))
             {
@@ -36,7 +36,7 @@ namespace Robots.Gui.Test.UiTestscs.Modules.Programs
             }
 
             Application application = Application.Launch(applicationPath);
-            Window window = application.GetWindow("MainWindow", InitializeOption.NoCache);
+            Window window = application.GetWindow("MainWindow", InitializeOption.NoCache);*/
 
 
             /*var programs = new List<IProgram>();

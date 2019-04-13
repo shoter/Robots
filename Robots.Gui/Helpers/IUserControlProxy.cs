@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Robots.Gui.Modules.Programs.AddProgram.CommandList
+namespace Robots.Gui.Helpers
 {
-    public class MoveCommandViewModel
+    public interface IUserControlProxy
     {
-        
+        object DataContext { get; set; }
     }
 }

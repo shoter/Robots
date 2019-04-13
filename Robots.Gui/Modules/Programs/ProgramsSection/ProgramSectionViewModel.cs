@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace Robots.Gui.Modules.Programs.ProgramsSection
 {
-    public class ProgramSectionViewModel
+    public class ProgramSectionViewModel : IProgramSectionViewModel
     {
         private IProgram SelectedProgram { get; set; }
 
-        public ProgramListViewModel ProgramList { get; }
-        public ProgramViewViewModel ProgramView { get; }
+        public IProgramListViewModel ProgramList { get; }
+        public IProgramViewViewModel ProgramView { get; }
 
         private IProgramService ProgramService { get; }
 
@@ -26,7 +26,7 @@ namespace Robots.Gui.Modules.Programs.ProgramsSection
         }
 
         [Inject]
-        public ProgramSectionViewModel(ProgramListViewModel programList, ProgramViewViewModel programView, IProgramService programService)
+        public ProgramSectionViewModel(IProgramListViewModel programList, IProgramViewViewModel programView, IProgramService programService)
         {
             this.ProgramList = programList;
             this.ProgramView = programView;

@@ -11,10 +11,7 @@
         <local:CommandListViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
-        <Style TargetType="Button" x:Key="ButtonStyle">
-            <Setter Property="Padding" Value="15,5,15,5" />
-            <Setter Property="FontSize" Value="15" />
-        </Style>
+
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -31,13 +28,13 @@
             Add Command
         </Label>
 
-        <Button Command="{Binding MoveCommand}" CommandParameter="{Binding}" Style="{StaticResource ButtonStyle}" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button Command="{Binding MoveCommand}" CommandParameter="{Binding}"  Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             Move
         </Button>
-        <Button Command="{Binding TurnCommand}" CommandParameter="{Binding}" Style="{StaticResource ButtonStyle}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button Command="{Binding TurnCommand}" CommandParameter="{Binding}"  Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             Turn
         </Button>
-        <Button Command="{Binding BeepCommand}" CommandParameter="{Binding}" Style="{StaticResource ButtonStyle}" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button Command="{Binding BeepCommand}" CommandParameter="{Binding}" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             Beep
         </Button>
             

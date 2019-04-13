@@ -9,13 +9,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Robots.Gui.Modules.Programs.ProgramView
 {
-    public class ProgramViewViewModel : ViewModelBase
+    public class ProgramViewViewModel : ViewModelBase, IProgramViewViewModel
     {
         private IProgram Program { get; set; }
+
+        public Visibility CanShow => Program == null ? Visibility.Hidden : Visibility.Visible;
 
         public string Name
         {
@@ -23,34 +26,33 @@ namespace Robots.Gui.Modules.Programs.ProgramView
             set => Program.Name = value;
         }
 
-        public AddProgramViewModel AddProgram { get; }
-        public ProgramCommandListViewModel ProgramCommandList { get; private set; }
+        public IAddProgramViewModel AddProgram { get; }
+        public IProgramCommandListViewModel ProgramCommandList { get; }
 
         [Inject]
-        public ProgramViewViewModel(AddProgramViewModel addProgram, ProgramCommandListViewModel commandList)
+        public ProgramViewViewModel(IAddProgramViewModel addProgram, IProgramCommandListViewModel commandList)
         {
             this.AddProgram = addProgram;
             this.ProgramCommandList = commandList;
 
-            this.AddProgram.AddProgram += onProgramAdded;
+            this.AddProgram.AddCommand += onProgramCommandAdded;
         }
 
-        private void onProgramAdded(object sender, AddCommandEventArgs e)
+        private void onProgramCommandAdded(object sender, AddCommandEventArgs e)
         {
             ProgramCommandList.AddCommand(e.Command);
         }
 
         public ProgramViewViewModel()
         {
-            AddProgram = new AddProgramViewModel();
         }
 
         public void SetProgram(IProgram program)
         {
             this.Program = program;
-            ProgramCommandList = new ProgramCommandListViewModel(Program);
+            ProgramCommandList.SetProgram(program);
 
-            NotifyPropertiesChanged(nameof(Name), nameof(AddProgram), nameof(ProgramCommandList));
+            NotifyPropertiesChanged(nameof(Name), nameof(AddProgram), nameof(ProgramCommandList), nameof(CanShow));
         }
         
     }

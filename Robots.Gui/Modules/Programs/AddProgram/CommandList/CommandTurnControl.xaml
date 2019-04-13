@@ -6,7 +6,26 @@
              xmlns:local="clr-namespace:Robots.Gui.Modules.Programs.AddProgram.CommandList"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <local:CommandTurnViewModel />
+    </UserControl.DataContext>
+
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Button HorizontalAlignment="Left" Margin="5,5" CommandParameter="{Binding}" Command="{x:Static local:CommandTurnViewModel.BackCommand}" CommandTarget="{Binding}" >Back</Button>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="{Binding Hint}" Margin="0,0,5,0"/>
+            <TextBox Width="50" MinWidth="50" VerticalContentAlignment="Center" FontSize="15" Text="{Binding Angle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Button CommandParameter="{Binding}" Command="{x:Static local:CommandTurnViewModel.AddTurnCommand}"  Grid.Row="1" Grid.Column="1">
+                Add Turn 
+            </Button>
+        </StackPanel>
+
+
     </Grid>
 </UserControl>

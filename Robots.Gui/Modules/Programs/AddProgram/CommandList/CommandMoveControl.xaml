@@ -7,20 +7,27 @@
              mc:Ignorable="d" 
              Background="White"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <local:CommandMoveViewModel/>
+    </UserControl.DataContext>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Button Margin="5,5"  HorizontalAlignment="Left" CommandParameter="{Binding}" Command="{x:Static local:CommandMoveViewModel.BackCommand}">Back</Button>
 
-        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Label Content="{Binding Hint}"/>
-            <TextBlock MinWidth="50" Text="{Binding Value}" />
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="{Binding Hint}" Margin="0,0,5,0"/>
+            <TextBox Width="50" MinWidth="50" Text="{Binding Distance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" FontSize="15" />
+            <Button CommandParameter="{Binding}" 
+                Command="{x:Static local:CommandMoveViewModel.AddMoveCommand}"  Grid.Row="1" Grid.Column="1">
+                Add Move
+            </Button>
         </StackPanel>
 
-        <Button Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-            Add Move
-        </Button>
+      
             
     </Grid>
 </UserControl>

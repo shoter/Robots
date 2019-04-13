@@ -5,12 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using Robots.Gui.Base;
+using Robots.Gui.Helpers;
 
 namespace Robots.Gui.Modules.Programs.AddProgram.CommandList
 {
     public class CommandListFactory : ICommandListFactory
     {
-        public UserControl CreateControl(CommandListState state)
+        public IUserControlProxy CreateControl(CommandListState s) => new UserControlProxy(createControl(s));
+    
+        private UserControl createControl(CommandListState state)
         {
             switch (state)
             {

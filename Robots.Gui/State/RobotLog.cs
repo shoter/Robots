@@ -8,15 +8,17 @@ namespace Robots.Gui.State
 {
     public class RobotLog : IRobotLog
     {
-        public List<string> MessagesList { get; } = new List<string>();
+        public List<RobotLogEntry> MessagesList { get; } = new List<RobotLogEntry>();
 
-        public IEnumerable<string> Messages => MessagesList;
+        public IEnumerable<RobotLogEntry> Entries => MessagesList;
 
-        public RobotLog() { }
-
-        public IRobotLog AddMessage(string msg)
+        public RobotLog()
         {
-            MessagesList.Add(msg);
+        }
+
+        public IRobotLog AddEntry(RobotLogEntry entry)
+        {
+            MessagesList.Add(entry);
             return this;
         }
 

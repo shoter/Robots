@@ -19,7 +19,7 @@ namespace Robots.Gui.Test.State
 
             robotLog.AddMessage(msg);
 
-            Assert.Single(robotLog.Messages, msg);
+            Assert.Single(robotLog.Entries, msg);
         }
 
         [Fact]
@@ -35,7 +35,7 @@ namespace Robots.Gui.Test.State
 
             for(int i = 0;i < messages.Count; ++ i)
             {
-                Assert.Equal(messages[i], robotLog.Messages.ElementAt(i));
+                Assert.Equal(messages[i], robotLog.Entries.ElementAt(i));
             }
         }
 
@@ -49,7 +49,7 @@ namespace Robots.Gui.Test.State
 
             robotLog.Clear();
 
-            Assert.Empty(robotLog.Messages);
+            Assert.Empty(robotLog.Entries);
         }
     }
 }

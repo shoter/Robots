@@ -6,7 +6,28 @@
              xmlns:local="clr-namespace:Robots.Gui.Modules.Robots.RobotLog"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <local:RobotLogViewModel/>
+    </UserControl.DataContext>
     <Grid>
+        <ListView Name="RobotLogList" ItemsSource="{Binding Entries}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="{Binding ElementName=FirstColumn, Path=ActualWidth}" Header="Time" DisplayMemberBinding="{Binding Time}"/>
+                    <GridViewColumn Width="{Binding ElementName=SecondColumn, Path=ActualWidth}" Header="Message" DisplayMemberBinding="{Binding Text}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="FirstColumn"/>
+            <Grid x:Name="SecondColumn" Grid.Column="1"/>
+        </Grid>
             
     </Grid>
 </UserControl>

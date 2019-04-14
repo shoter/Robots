@@ -27,7 +27,7 @@ namespace Robots.Gui.Modules.Robots.RobotList
 
         private void onRobotSelect(object sender, MouseButtonEventArgs e)
         {
-            var item = sender as RobotListItemViewModel;
+            var item = (sender as ListViewItem).DataContext as RobotListItemViewModel;
 
             item.SelectRobot();
         }

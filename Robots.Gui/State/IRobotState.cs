@@ -14,6 +14,8 @@ namespace Robots.Gui.State
 
         IRobot Robot { get; }
         IProgram AssignedProgram { get; }
+        IRobotLog RobotLog { get; }
+
         bool IsProgramRunning { get; }
 
         void AssignProgram(IProgram program);

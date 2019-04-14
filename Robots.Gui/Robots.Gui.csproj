@@ -148,10 +148,12 @@
     </Compile>
     <Compile Include="Modules\Robots\RobotSection\RobotSectionViewModel.cs" />
     <Compile Include="Modules\Robots\RobotsModule.cs" />
+    <Compile Include="Modules\Robots\RobotView\IRobotViewProgramViewModel.cs" />
     <Compile Include="Modules\Robots\RobotView\IRobotViewViewModel.cs" />
     <Compile Include="Modules\Robots\RobotView\RobotViewControl.xaml.cs">
       <DependentUpon>RobotViewControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Robots\RobotView\RobotViewProgramViewModel.cs" />
     <Compile Include="Modules\Robots\RobotView\RobotViewViewModel.cs" />
     <Compile Include="RobotsException.cs" />
     <Compile Include="RobotsKernel.cs" />
@@ -161,6 +163,7 @@
     <Compile Include="State\IRobotState.cs" />
     <Compile Include="State\ProgramFactory.cs" />
     <Compile Include="State\RobotLog.cs" />
+    <Compile Include="State\RobotLogEntry.cs" />
     <Compile Include="State\RobotState.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

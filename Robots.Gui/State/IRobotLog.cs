@@ -8,9 +8,9 @@ namespace Robots.Gui.State
 {
     public interface IRobotLog
     {
-        IEnumerable<string> Messages { get; }
+        IEnumerable<RobotLogEntry> Entries { get; }
 
-        IRobotLog AddMessage(string msg);
+        IRobotLog AddEntry(RobotLogEntry entry);
 
         IRobotLog Clear();
     }

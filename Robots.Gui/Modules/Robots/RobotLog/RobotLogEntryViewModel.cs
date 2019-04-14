@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robots.Gui.State;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,5 +20,7 @@ namespace Robots.Gui.Modules.Robots.RobotLog
             this.Time = time;
             this.Text = text;
         }
+
+        public RobotLogEntryViewModel(RobotLogEntry entry) : this(entry.Message, entry.Time) { }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Moq;
+using Robots.Common;
 using Robots.Gui.State;
 using Robots.SDK;
 using System;
@@ -21,6 +22,7 @@ namespace Robots.Gui.Test.State
         public Mock<IRobotState> AddMockRobot()
         {
             var mock = new Mock<IRobotState>();
+            mock.SetupGet(x => x.Id).Returns(UniqueIdGenerator.Global.Id);
             Robots.Add(mock.Object);
 
             return mock;

@@ -65,7 +65,9 @@
     <Compile Include="Helpers\ButtonHelper.cs" />
     <Compile Include="Helpers\IUserControlProxy.cs" />
     <Compile Include="Helpers\UserControlProxy.cs" />
+    <Compile Include="IMainWindowViewModel.cs" />
     <Compile Include="MainModule.cs" />
+    <Compile Include="MainWindowState.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Modules\Notifications\INotificationService.cs" />
     <Compile Include="Modules\Notifications\NotificationModule.cs" />
@@ -123,6 +125,32 @@
       <DependentUpon>ProgramViewControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\Programs\ProgramView\ProgramViewViewModel.cs" />
+    <Compile Include="Modules\Robots\RobotList\IRobotListItemViewModel.cs" />
+    <Compile Include="Modules\Robots\RobotList\IRobotListViewModel.cs" />
+    <Compile Include="Modules\Robots\RobotList\RobotListControl.xaml.cs">
+      <DependentUpon>RobotListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Robots\RobotList\RobotListItemEventArgs.cs" />
+    <Compile Include="Modules\Robots\RobotList\RobotListItemViewModel.cs" />
+    <Compile Include="Modules\Robots\RobotList\RobotListViewModel.cs" />
+    <Compile Include="Modules\Robots\RobotLog\IRobotLogEntryViewModel.cs" />
+    <Compile Include="Modules\Robots\RobotLog\IRobotLogViewModel.cs" />
+    <Compile Include="Modules\Robots\RobotLog\RobotLogControl.xaml.cs">
+      <DependentUpon>RobotLogControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Robots\RobotLog\RobotLogEntryViewModel.cs" />
+    <Compile Include="Modules\Robots\RobotLog\RobotLogViewModel.cs" />
+    <Compile Include="Modules\Robots\RobotSection\IRobotSectionViewModel.cs" />
+    <Compile Include="Modules\Robots\RobotSection\RobotSectionControl.xaml.cs">
+      <DependentUpon>RobotSectionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Robots\RobotSection\RobotSectionViewModel.cs" />
+    <Compile Include="Modules\Robots\RobotsModule.cs" />
+    <Compile Include="Modules\Robots\RobotView\IRobotViewViewModel.cs" />
+    <Compile Include="Modules\Robots\RobotView\RobotViewControl.xaml.cs">
+      <DependentUpon>RobotViewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Robots\RobotView\RobotViewViewModel.cs" />
     <Compile Include="RobotsException.cs" />
     <Compile Include="RobotsKernel.cs" />
     <Compile Include="State\ApplicationState.cs" />
@@ -173,6 +201,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\Programs\ProgramView\ProgramViewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Robots\RobotList\RobotListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Robots\RobotLog\RobotLogControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Robots\RobotSection\RobotSectionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Robots\RobotView\RobotViewControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,4 +1,5 @@
-﻿using Robots.Gui.Modules.Programs.ProgramsSection;
+﻿using Robots.Gui.Helpers;
+using Robots.Gui.Modules.Programs.ProgramsSection;
 using Robots.Gui.Modules.Robots.RobotSection;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,7 @@ namespace Robots.Gui
         IRobotSectionViewModel RobotSection { get; }
 
         MainWindowState State { get; set; }
+
+        IUserControlProxy CurrentControl { get; }
     }
 }

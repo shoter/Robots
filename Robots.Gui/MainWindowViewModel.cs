@@ -1,4 +1,5 @@
 ﻿using Robots.Gui.Base;
+using Robots.Gui.Helpers;
 using Robots.Gui.Modules.Programs.ProgramsSection;
 using Robots.Gui.Modules.Robots.RobotSection;
 using System;
@@ -14,22 +15,29 @@ namespace Robots.Gui
         public IProgramSectionViewModel ProgramSection { get; }
         public IRobotSectionViewModel RobotSection { get; }
 
-        private MainWindowState state = new MainWindowState();
+        private MainWindowState state = MainWindowState.None;
         public MainWindowState State
         {
             get => state;
             set
             {
                 state = value;
+                CurrentControl = controlFactory.Create(value);
                 NotifyPropertyChanged();
             }
         }
 
+        public IUserControlProxy CurrentControl { get; private set; }
 
-        public MainWindowViewModel(IProgramSectionViewModel programSection, IRobotSectionViewModel robotSection)
+        private readonly IMainWindowControlFactory controlFactory;
+
+
+        public MainWindowViewModel(IProgramSectionViewModel programSection, IRobotSectionViewModel robotSection, IMainWindowControlFactory controlFactory)
         {
             this.RobotSection = robotSection;
             this.ProgramSection = programSection;
+
+            this.controlFactory = controlFactory;
         }
     }
 }

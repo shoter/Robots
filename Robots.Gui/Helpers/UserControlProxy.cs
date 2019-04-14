@@ -9,6 +9,8 @@ namespace Robots.Gui.Helpers
 {
     public class UserControlProxy : IUserControlProxy
     {
+        public static UserControlProxy NullProxy = new UserControlProxy(null);
+
         public UserControl UserControl { get; }
 
         public object DataContext

@@ -8,6 +8,7 @@ namespace Robots.Gui
 {
     public enum MainWindowState
     {
+        None,
         Robots,
         Programs
         

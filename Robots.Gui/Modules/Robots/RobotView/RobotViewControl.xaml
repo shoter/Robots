@@ -24,6 +24,9 @@
                       SelectedItem="{Binding SelectedProgram}"
                       DisplayMemberPath="Name"/>
 
+            <Label>Robot Status:</Label>
+            <Label Content="{Binding Status}"/>
+
         </StackPanel>
 
         <log:RobotLogControl Grid.Row="1" DataContext="{Binding RobotLog}"/>

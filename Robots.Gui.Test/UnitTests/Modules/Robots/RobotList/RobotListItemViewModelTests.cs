@@ -26,21 +26,12 @@ namespace Robots.Gui.Test.UnitTests.Modules.Robots.RobotList
         }
 
         [Fact]
-        public void AfterConstructor_ProperValues()
+        public void Status_ShouldDisplayRobotStatus()
         {
-            Assert.Contains(robotMock.Object.Id.ToString(), viewModel.DisplayName);
-            Assert.Equal("Idle", viewModel.Status);
-        }
+            robotMock.SetupGet(x => x.Status).Returns("Alibaba");
 
-        [Fact]
-        public void Status_ShouldDisplayProgramNameIfProgramIsRunning()
-        {
-            robotMock.Setup(x => x.IsProgramRunning).Returns(true);
-            var programMock = new Mock<IProgram>();
-            programMock.SetupGet(x => x.Name).Returns("This is something");
-            robotMock.SetupGet(x => x.AssignedProgram).Returns(programMock.Object);
-
-            Assert.Contains(programMock.Object.Name, viewModel.Status);
+            Assert.Equal("Alibaba", viewModel.Status);
+            robotMock.VerifyGet(x => x.Status, Times.Once);
         }
 
         [Fact]

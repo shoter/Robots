@@ -18,6 +18,8 @@ namespace Robots.Gui.State
 
         bool IsProgramRunning { get; }
 
+        string Status { get; }
+
         void AssignProgram(IProgram program);
         void DeassignProgram();
 

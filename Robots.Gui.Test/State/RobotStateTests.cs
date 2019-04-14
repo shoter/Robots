@@ -83,5 +83,24 @@ namespace Robots.Gui.Test.State
 
             Assert.False(robotState.IsProgramRunning);
         }
+
+        [Fact]
+        public void Status_ShouldReturnIdle_IfNoProgramIsRunning()
+        {
+            Assert.Equal("Idle", robotState.Status);
+        }
+
+        [Fact]
+        public void Status_ShouldHaveProgramName_WhenProgramIsRunning()
+        {
+            var programMock = new Mock<IProgram>();
+            programMock.SetupGet(x => x.Name).Returns("asdasdasdasd");
+            var program = programMock.Object;
+
+            robotState.AssignProgram(program);
+            robotState.RunProgram();
+
+            Assert.Contains(programMock.Object.Name, robotState.Status);
+        }
     }
 }

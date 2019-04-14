@@ -29,7 +29,7 @@ namespace Robots.Gui.State
                 RobotsList.Add(new RobotState(r, new RobotLog()));
 
             for(int i = 0; i <5; ++i)
-            ProgramsList.Add(new Program());
+                ProgramsList.Add(new Program());
         }
 
         public void AddProgram(IProgram program) => ProgramsList.Add(program);

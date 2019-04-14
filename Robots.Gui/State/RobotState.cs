@@ -26,6 +26,16 @@ namespace Robots.Gui.State
 
         public bool IsProgramRunning { get; private set; } = false;
 
+        public string Status
+        {
+            get
+            {
+                if (IsProgramRunning == false)
+                    return "Idle";
+                return $"Running {AssignedProgram.Name}";
+            }
+        }
+
         public RobotState(IRobot robot, IRobotLog robotLog)
         {
             this.Robot = robot;

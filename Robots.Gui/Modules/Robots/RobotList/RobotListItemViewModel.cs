@@ -17,18 +17,8 @@ namespace Robots.Gui.Modules.Robots.RobotList
 
         public ulong Id => robot.Id;
 
-        public string Status
-        {
-            get
-            {
-                if(robot.IsProgramRunning)
-                {
-                    return $"Running program: {robot.AssignedProgram.Name}";
-                }
+        public string Status => robot.Status;
 
-                return "Idle";
-            }
-        }
 
         public RobotListItemViewModel() { }
 

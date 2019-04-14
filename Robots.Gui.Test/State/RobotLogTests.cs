@@ -15,27 +15,28 @@ namespace Robots.Gui.Test.State
         [Fact]
         public void AddMessage_MessageShouldBeAdded()
         {
-            string msg = "Robot has fired a tactical nuclear missile";
+            var entry = new RobotLogEntry("Robot has fired a tactical nuclear missile");
 
-            robotLog.AddMessage(msg);
+            robotLog.AddEntry(entry);
 
-            Assert.Single(robotLog.Entries, msg);
+            Assert.Single(robotLog.Entries, entry);
         }
 
         [Fact]
         public void AddMessage_MessageShouldBeAddedInOrder()
         {
-            List<string> messages = new List<string>();
+            List<RobotLogEntry> entries = new List<RobotLogEntry>();
 
             for(char c = 'a'; c <= 'z'; ++c)
             {
-                messages.Add(c.ToString());
-                robotLog.AddMessage(c.ToString());
+                var entry = new RobotLogEntry(c.ToString());
+                entries.Add(entry);
+                robotLog.AddEntry(entry);
             }
 
-            for(int i = 0;i < messages.Count; ++ i)
+            for(int i = 0;i < entries.Count; ++ i)
             {
-                Assert.Equal(messages[i], robotLog.Entries.ElementAt(i));
+                Assert.Equal(entries[i], robotLog.Entries.ElementAt(i));
             }
         }
 
@@ -44,7 +45,7 @@ namespace Robots.Gui.Test.State
         {
             for (int i = 0; i < 123; ++i)
             {
-                robotLog.AddMessage("asdasd");
+                robotLog.AddEntry(new RobotLogEntry("asdasd"));
             }
 
             robotLog.Clear();

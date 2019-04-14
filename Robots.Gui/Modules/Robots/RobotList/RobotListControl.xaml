@@ -9,15 +9,27 @@
     <UserControl.DataContext>
         <local:RobotListViewModel/>
     </UserControl.DataContext>
-    <ListView ItemsSource="{Binding Robots}">
-        <ListView.DataContext>
-            <local:RobotListItemViewModel/>
-        </ListView.DataContext>
-        <ListView.View>
-            <GridView>
-                <GridViewColumn Width="150" Header="Name" DisplayMemberBinding="{Binding DisplayName}"/>
-                <GridViewColumn Width="200" Header="Status" DisplayMemberBinding="{Binding Status}"/>
-            </GridView>
-        </ListView.View>
-    </ListView>
+    <Grid>
+        <ListView Name="RobotList" ItemsSource="{Binding Robots}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="{Binding ElementName=FirstColumn, Path=ActualWidth}" Header="Name" DisplayMemberBinding="{Binding DisplayName}"/>
+                    <GridViewColumn Width="{Binding ElementName=SecondColumn, Path=ActualWidth}" Header="Status" DisplayMemberBinding="{Binding Status}"/>
+                </GridView>
+            </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="onRobotSelect" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="7*"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="FirstColumn"/>
+            <Grid x:Name="SecondColumn" Grid.Column="1"/>
+        </Grid>
+    </Grid>
 </UserControl>

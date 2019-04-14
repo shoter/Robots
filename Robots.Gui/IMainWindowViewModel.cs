@@ -11,9 +11,6 @@ namespace Robots.Gui
 {
     public interface IMainWindowViewModel
     {
-        IProgramSectionViewModel ProgramSection { get; }
-        IRobotSectionViewModel RobotSection { get; }
-
         MainWindowState State { get; set; }
 
         IUserControlProxy CurrentControl { get; }

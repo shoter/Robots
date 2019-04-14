@@ -83,6 +83,7 @@
   <ItemGroup>
     <Compile Include="UiTests.cs\Modules\Programs\ProgramListControlTests.cs" />
     <Compile Include="UiTests.cs\UITestBase.cs" />
+    <Compile Include="UnitTests\MainWindowViewModelTests.cs" />
     <Compile Include="UnitTests\Modules\Programs\AddProgram\AddProgramViewModelTests.cs" />
     <Compile Include="UnitTests\Modules\Programs\AddProgram\CommandList\CommandMoveViewModelTests.cs" />
     <Compile Include="UnitTests\Modules\Programs\AddProgram\CommandList\CommandTurnViewModelTests.cs" />

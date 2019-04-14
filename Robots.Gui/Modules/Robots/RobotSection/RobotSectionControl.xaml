@@ -19,6 +19,6 @@
 
         <robotList:RobotListControl DataContext="{Binding RobotList}"/>
 
-        <robotView:RobotViewControl Grid.Column="1" DataContext="{Binding RobotView}"/>
+        <robotView:RobotViewControl DataContext="{Binding RobotView}" Grid.Column="1"/>
     </Grid>
 </UserControl>

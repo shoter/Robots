@@ -2,6 +2,7 @@
 using Robots.Gui.Modules.Notifications;
 using Robots.Gui.Modules.Programs;
 using Robots.Gui.Modules.Programs.AddProgram;
+using Robots.Gui.Modules.Robots;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,8 @@ namespace Robots.Gui
             this.Load(
                 new MainModule(),
                 new ProgramModule(),
-                new NotificationModule()
+                new NotificationModule(),
+                new RobotsModule()
                 );
         }
     }

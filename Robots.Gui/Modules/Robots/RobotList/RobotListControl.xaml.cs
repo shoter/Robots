@@ -24,5 +24,12 @@ namespace Robots.Gui.Modules.Robots.RobotList
         {
             InitializeComponent();
         }
+
+        private void onRobotSelect(object sender, MouseButtonEventArgs e)
+        {
+            var item = sender as RobotListItemViewModel;
+
+            item.SelectRobot();
+        }
     }
 }

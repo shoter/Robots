@@ -22,22 +22,19 @@ namespace Robots.Gui
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(ProgramSectionViewModel vm)
+        private readonly MainWindowViewModel vm;
+
+        public MainWindow(MainWindowViewModel vm)
         {
             InitializeComponent();
 
-            this.DataContext = vm;
+            this.DataContext = this.vm = vm;
         }
 
         private void RibbonApplicationMenu_Loaded(object sender, RoutedEventArgs e)
         {
             var grid = (RibbonApplicationMenu.Template.FindName("MainPaneBorder", RibbonApplicationMenu) as Border).Parent as Grid;
             grid.ColumnDefinitions[2].Width = new GridLength(0);
-        }
-
-        private void ProgramListView_ProgramSelected(object sender, ProgramListItemEventArgs e)
-        {
-
         }
 
         private void Ribbon_Loaded(object sender, RoutedEventArgs e)

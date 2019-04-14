@@ -18,6 +18,8 @@ namespace Robots.Gui
             Kernel.Bind<IApplicationState>().To<ApplicationState>().InSingletonScope();
 
             Kernel.Bind<IRobotFactory>().To<RobotFactoryMock>().InSingletonScope();
+
+            Kernel.Bind<IMainWindowControlFactory>().To<MainWindowControlFactory>().InSingletonScope();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Robots.Gui.Base;
+﻿using Ninject;
+using Robots.Gui.Base;
 using Robots.Gui.Helpers;
 using Robots.Gui.Modules.Programs.ProgramsSection;
 using Robots.Gui.Modules.Robots.RobotSection;
@@ -12,10 +13,8 @@ namespace Robots.Gui
 {
     public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
     {
-        public IProgramSectionViewModel ProgramSection { get; }
-        public IRobotSectionViewModel RobotSection { get; }
 
-        private MainWindowState state = MainWindowState.None;
+        private MainWindowState state;
         public MainWindowState State
         {
             get => state;
@@ -31,13 +30,13 @@ namespace Robots.Gui
 
         private readonly IMainWindowControlFactory controlFactory;
 
+        public MainWindowViewModel() { }
 
-        public MainWindowViewModel(IProgramSectionViewModel programSection, IRobotSectionViewModel robotSection, IMainWindowControlFactory controlFactory)
+        [Inject]
+        public MainWindowViewModel(IMainWindowControlFactory controlFactory)
         {
-            this.RobotSection = robotSection;
-            this.ProgramSection = programSection;
-
             this.controlFactory = controlFactory;
+            State = MainWindowState.Robots;
         }
     }
 }

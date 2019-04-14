@@ -15,6 +15,8 @@ namespace Robots.Gui.Modules.Robots.RobotList
 
         public event EventHandler<RobotListItemEventArgs> RobotSelected;
 
+        public int Count => Robots?.Count() ?? -1;
+
         public RobotListViewModel() { }
 
         [Inject]

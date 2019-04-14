@@ -65,8 +65,10 @@
     <Compile Include="Helpers\ButtonHelper.cs" />
     <Compile Include="Helpers\IUserControlProxy.cs" />
     <Compile Include="Helpers\UserControlProxy.cs" />
+    <Compile Include="IMainWindowControlFactory.cs" />
     <Compile Include="IMainWindowViewModel.cs" />
     <Compile Include="MainModule.cs" />
+    <Compile Include="MainWindowControlFactory.cs" />
     <Compile Include="MainWindowState.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Modules\Notifications\INotificationService.cs" />

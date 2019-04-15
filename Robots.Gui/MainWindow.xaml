@@ -28,9 +28,9 @@
         <Ribbon Name="Ribbon" SelectedIndex="0" Height="45" Loaded="Ribbon_Loaded" >
             <Ribbon.ApplicationMenu>
                 <RibbonApplicationMenu Name="RibbonApplicationMenu" AllowDrop="false" Loaded="RibbonApplicationMenu_Loaded" >
-                    <RibbonApplicationMenuItem Header="Robot List" />
-                    <RibbonApplicationMenuItem Header="Program editor" />
-                    <RibbonApplicationMenuItem Header="Exit" />
+                    <RibbonApplicationMenuItem Header="Robot List" Click="robotListClicked" />
+                    <RibbonApplicationMenuItem Header="Program editor" Click="programEditorClicked" />
+                    <RibbonApplicationMenuItem Header="Exit" Click="exitClicked" />
                 </RibbonApplicationMenu>
             </Ribbon.ApplicationMenu>
             

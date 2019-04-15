@@ -26,7 +26,9 @@ namespace Robots.Gui.State
 
         public IRobotLog RobotLog { get; }
 
-        public bool IsProgramRunning { get; private set; } = false;
+        private IProgramExecutor ProgramExecutor { get; set; } = null;
+
+        public bool IsProgramRunning => ProgramExecutor?.IsCompleted == false;
 
         public string Status
         {
@@ -65,21 +67,40 @@ namespace Robots.Gui.State
         {
             if (IsProgramRunning)
                 throw new RobotsException("Robot cannot run 2 programs at same time!");
+            RobotLog.Clear();
 
-            IsProgramRunning = true;
-            var executor = programExecutionService.Execute(AssignedProgram, Robot);
 
-            executor.ProgramExecutionEnd += onProgramExecutionEnd;
+            ProgramExecutor = programExecutionService.Execute(AssignedProgram, Robot);
 
-            return executor;
+            RobotLog.AddEntry(new RobotLogEntry($"Program {AssignedProgram} execution started!"));
+
+            ProgramExecutor.ProgramExecutionEnd += onProgramExecutionEnd;
+
+            ProgramExecutor.CommandExecutionStart += programExecutor_CommandExecutionStart;
+            ProgramExecutor.CommandExecutionEnd += programExecutor_CommandExecutionEnd;
+
+            ProgramExecutor.Start();
+
+            return ProgramExecutor;
+        }
+
+        private void programExecutor_CommandExecutionEnd(object sender, ProgramExecutorCommandEventArgs e)
+        {
+            RobotLog.AddEntry(new RobotLogEntry($"Starting execution of command: {e.Command.Describe()}."));
+        }
+
+        private void programExecutor_CommandExecutionStart(object sender, ProgramExecutorCommandEventArgs e)
+        {
+            RobotLog.AddEntry(new RobotLogEntry($"Completed execution of command: {e.Command.Describe()}."));
         }
 
         private void onProgramExecutionEnd(object sender, EventArgs e)
         {
             var exec = sender as IProgramExecutor;
 
-            IsProgramRunning = false;
             exec.ProgramExecutionEnd -= onProgramExecutionEnd;
+
+            RobotLog.AddEntry(new RobotLogEntry($"Program {exec.Program.Name} execution completed!"));
         }
 
         public void DeassignProgram()

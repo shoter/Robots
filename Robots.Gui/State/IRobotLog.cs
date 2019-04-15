@@ -10,6 +10,10 @@ namespace Robots.Gui.State
     {
         IEnumerable<RobotLogEntry> Entries { get; }
 
+        event EventHandler<RobotLogNewEntryEventArgs> NewEntry;
+
+        event EventHandler EntriesCleared;
+
         IRobotLog AddEntry(RobotLogEntry entry);
 
         IRobotLog Clear();

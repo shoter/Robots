@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Robots.Gui.Modules.Robots.RobotView
 {
@@ -22,6 +23,10 @@ namespace Robots.Gui.Modules.Robots.RobotView
         string RobotName { get; }
 
         Visibility Visibility { get; }
+
+        string Status { get; }
+
+        ICommand StartProgramCommand { get; }
 
         void SetRobot(IRobotState robot);
     }

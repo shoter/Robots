@@ -14,11 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="IntegrationTests\" />
+    <ProjectReference Include="..\Robots.Core\Robots.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Robots.Core\Robots.Core.csproj" />
+    <Folder Include="IntegrationTests\" />
   </ItemGroup>
 
 </Project>

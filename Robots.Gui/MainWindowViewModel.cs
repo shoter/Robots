@@ -23,6 +23,7 @@ namespace Robots.Gui
                 state = value;
                 CurrentControl = controlFactory.Create(value);
                 NotifyPropertyChanged();
+                NotifyPropertiesChanged(nameof(CurrentControl));
             }
         }
 

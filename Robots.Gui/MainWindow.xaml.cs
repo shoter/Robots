@@ -45,5 +45,20 @@ namespace Robots.Gui
                 child.RowDefinitions[0].Height = new GridLength(0);
             }
         }
+
+        private void robotListClicked(object sender, RoutedEventArgs e)
+        {
+            vm.State = MainWindowState.Robots;
+        }
+
+        private void programEditorClicked(object sender, RoutedEventArgs e)
+        {
+            vm.State = MainWindowState.Programs;
+        }
+
+        private void exitClicked(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }

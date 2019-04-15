@@ -28,9 +28,6 @@ namespace Robots.Gui.State
 
             foreach (var r in robots)
                 RobotsList.Add(new RobotState(programExecutionService, r, new RobotLog()));
-
-            for(int i = 0; i <5; ++i)
-                ProgramsList.Add(new Program());
         }
 
         public void AddProgram(IProgram program) => ProgramsList.Add(program);

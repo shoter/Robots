@@ -163,6 +163,7 @@
     <Compile Include="State\ProgramFactory.cs" />
     <Compile Include="State\RobotLog.cs" />
     <Compile Include="State\RobotLogEntry.cs" />
+    <Compile Include="State\RobotLogNewEntryEventArgs.cs" />
     <Compile Include="State\RobotState.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -28,7 +28,10 @@
             <Label>Robot Status:</Label>
             <Label Content="{Binding Status}"/>
 
-            <Button IsEnabled="{Binding IsProgramModificationEnabled}">
+            <Button
+                Command="{Binding StartProgramCommand}"
+                CommandParameter="{Binding}"
+                IsEnabled="{Binding IsProgramModificationEnabled}">
                 Start
             </Button>
 

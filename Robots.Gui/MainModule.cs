@@ -1,4 +1,5 @@
 ﻿using Ninject.Modules;
+using Robots.Core.ProgramExecution;
 using Robots.Core.Robots;
 using Robots.Gui.State;
 using Robots.SDK;
@@ -20,6 +21,9 @@ namespace Robots.Gui
             Kernel.Bind<IRobotFactory>().To<RobotFactoryMock>().InSingletonScope();
 
             Kernel.Bind<IMainWindowControlFactory>().To<MainWindowControlFactory>().InSingletonScope();
+
+            Kernel.Bind<IProgramExecutionService>().To<ProgramExecutionService>().InSingletonScope();
+            Kernel.Bind<IProgramExecutorFactory>().To<ProgramExecutorFactory>().InSingletonScope();
         }
     }
 }

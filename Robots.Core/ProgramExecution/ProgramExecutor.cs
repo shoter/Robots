@@ -45,9 +45,9 @@ namespace Robots.Core.ProgramExecution
                 c.Execute(Robot);
                 CommandExecutionEnd?.Invoke(this, new ProgramExecutorCommandEventArgs(c, Program, Robot));
             }
-
-            ProgramExecutionEnd?.Invoke(this, EventArgs.Empty);
+           
             IsCompleted = true;
+            ProgramExecutionEnd?.Invoke(this, EventArgs.Empty);
         }
     }
 }

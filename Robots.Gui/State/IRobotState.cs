@@ -3,13 +3,14 @@ using Robots.Core.Programs;
 using Robots.SDK;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Robots.Gui.State
 {
-    public interface IRobotState
+    public interface IRobotState : INotifyPropertyChanged
     {
         ulong Id { get; }
 

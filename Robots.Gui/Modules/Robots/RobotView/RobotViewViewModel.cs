@@ -92,7 +92,7 @@ namespace Robots.Gui.Modules.Robots.RobotView
                 }
             }
 
-            NotifyPropertiesChanged(nameof(Visibility), nameof(SelectedProgram), nameof(RobotName), nameof(IsProgramModificationEnabled));
+            NotifyPropertiesChanged(nameof(Visibility), nameof(Status), nameof(SelectedProgram), nameof(RobotName), nameof(IsProgramModificationEnabled));
         }
 
         private static void startProgram(RobotViewViewModel vm)
@@ -103,7 +103,7 @@ namespace Robots.Gui.Modules.Robots.RobotView
 
             executor.ProgramExecutionEnd += vm.onProgramEnd;
 
-            vm.NotifyPropertiesChanged(nameof(IsProgramModificationEnabled));
+            vm.NotifyPropertiesChanged(nameof(IsProgramModificationEnabled), nameof(Status));
         }
 
         private static bool canStartProgram(RobotViewViewModel vm)
@@ -125,6 +125,9 @@ namespace Robots.Gui.Modules.Robots.RobotView
             {
                 NotifyPropertiesChanged(nameof(IsProgramModificationEnabled), nameof(Status), nameof(IsProgramModificationEnabled));
             }
+            App.Current.Dispatcher.Invoke(() =>
+                        CommandManager.InvalidateRequerySuggested()
+                        );
         }
     }
 }

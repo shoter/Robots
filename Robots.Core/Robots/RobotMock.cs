@@ -35,13 +35,13 @@ namespace Robots.Core.Robots
         public void Move(double distance)
         {
             lock (exclusivenessMutex)
-                Thread.Sleep((int)Math.Min(5000, distance));
+                Thread.Sleep((int)Math.Max(Math.Min(10_000, distance * 10), 100));
         }
 
         public void Turn(double angle)
         {
             lock (exclusivenessMutex)
-                Thread.Sleep((int)Math.Min(5000, angle));
+                Thread.Sleep((int)Math.Max(Math.Min(10_000, angle), 100));
         }
 
         public override string ToString() => Name;

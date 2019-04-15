@@ -1,4 +1,5 @@
-﻿using Robots.Gui.State;
+﻿using Robots.Gui.Base;
+using Robots.Gui.State;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Robots.Gui.Modules.Robots.RobotList
 {
-    public class RobotListItemViewModel : IRobotListItemViewModel
+    public class RobotListItemViewModel : ViewModelBase, IRobotListItemViewModel
     {
         private readonly IRobotState robot;
 
@@ -25,6 +26,14 @@ namespace Robots.Gui.Modules.Robots.RobotList
         public RobotListItemViewModel(IRobotState robot)
         {
             this.robot = robot;
+            this.robot.PropertyChanged += robot_PropertyChanged;
+
+        }
+
+        private void robot_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(IRobotState.Status))
+                NotifyPropertiesChanged(nameof(Status));
         }
 
         public void SelectRobot()

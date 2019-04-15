@@ -12,10 +12,11 @@
         <local:ProgramListViewModel/>
     </UserControl.DataContext>
 
-    <ListView Name="ProgramListView" ItemsSource="{Binding Programs}">
+    <ListView Name="ProgramListView" ItemsSource="{Binding Programs}" SelectionMode="Single">
         <ListView.View>
             <GridView>
-                <GridViewColumn Width="150" Header="Name" DisplayMemberBinding="{Binding Name}" />
+                <GridViewColumn Width="{Binding ElementName=ProgramListView, Path=ActualWidth}"
+                                Header="Name" DisplayMemberBinding="{Binding Name}" />
             </GridView>
         </ListView.View>
         <ListView.ContextMenu>

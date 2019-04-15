@@ -37,7 +37,7 @@ namespace Robots.Gui
         public MainWindowViewModel(IMainWindowControlFactory controlFactory)
         {
             this.controlFactory = controlFactory;
-            State = MainWindowState.Robots;
+            State = MainWindowState.None;
         }
     }
 }

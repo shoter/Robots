@@ -86,8 +86,7 @@ namespace Robots.Gui.Test.State
             robotState.RunProgram();
 
 
-
-            defaultExecutorMock.Raise(x => x.ProgramExecutionEnd += null, EventArgs.Empty);
+            defaultExecutorMock.SetupGet(x => x.IsCompleted).Returns(true);
 
             Assert.False(robotState.IsProgramRunning);
         }

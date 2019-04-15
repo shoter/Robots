@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ using Robots.SDK;
 
 namespace Robots.Gui.State
 {
-    public class RobotState : IRobotState
+    public class RobotState : IRobotState, INotifyPropertyChanged
     {
         public string Name { get; set; }
 
@@ -41,6 +42,8 @@ namespace Robots.Gui.State
         }
 
         private readonly IProgramExecutionService programExecutionService;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public RobotState(IProgramExecutionService programExecutionService, IRobot robot, IRobotLog robotLog)
         {
@@ -81,6 +84,8 @@ namespace Robots.Gui.State
 
             ProgramExecutor.Start();
 
+            notifyPropertiesChanged(nameof(Status));
+
             return ProgramExecutor;
         }
 
@@ -101,6 +106,8 @@ namespace Robots.Gui.State
             exec.ProgramExecutionEnd -= onProgramExecutionEnd;
 
             RobotLog.AddEntry(new RobotLogEntry($"Program {exec.Program.Name} execution completed!"));
+
+            notifyPropertiesChanged(nameof(Status));
         }
 
         public void DeassignProgram()
@@ -109,6 +116,12 @@ namespace Robots.Gui.State
                 throw new RobotsException("Cannot deassign program! Program is already running!");
 
             this.AssignedProgram = null;
+        }
+
+        private void notifyPropertiesChanged(params string[] props)
+        {
+            foreach (var p in props)
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(p));
         }
     }
 }

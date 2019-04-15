@@ -20,6 +20,8 @@ namespace Robots.Core.ProgramExecution
         IProgram Program { get; }
         IRobot Robot { get; }
 
+        void Start();
+
         event EventHandler<ProgramExecutorCommandEventArgs> CommandExecutionStart;
         event EventHandler<ProgramExecutorCommandEventArgs> CommandExecutionEnd;
         event EventHandler<EventArgs> ProgramExecutionEnd;

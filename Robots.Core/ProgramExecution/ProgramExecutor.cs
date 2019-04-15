@@ -12,6 +12,7 @@ namespace Robots.Core.ProgramExecution
     public class ProgramExecutor : IProgramExecutor
     {
         public bool IsCompleted { get; private set; } = false;
+        public bool HasBeenStarted { get; private set; } = false;
 
         public IProgram Program { get; }
 
@@ -25,7 +26,13 @@ namespace Robots.Core.ProgramExecution
         {
             this.Robot = robot;
             this.Program = program;
+        }
 
+        public void Start()
+        {
+            if (HasBeenStarted)
+                throw new RobotsException("Cannot start same executor twice!");
+            HasBeenStarted = true;
 
             ThreadPool.QueueUserWorkItem(start);
         }

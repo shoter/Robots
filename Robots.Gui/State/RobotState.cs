@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Robots.Common;
+using Robots.Core;
+using Robots.Core.ProgramExecution;
 using Robots.Core.Programs;
 using Robots.SDK;
 
@@ -36,8 +38,11 @@ namespace Robots.Gui.State
             }
         }
 
-        public RobotState(IRobot robot, IRobotLog robotLog)
+        private readonly IProgramExecutionService programExecutionService;
+
+        public RobotState(IProgramExecutionService programExecutionService, IRobot robot, IRobotLog robotLog)
         {
+            this.programExecutionService = programExecutionService;
             this.Robot = robot;
             this.RobotLog = robotLog;
             this.Id = uniqueId.Id;
@@ -56,23 +61,25 @@ namespace Robots.Gui.State
 
         public bool CanAssignProgram() => !IsProgramRunning;
 
-        public void RunProgram()
+        public IProgramExecutor RunProgram()
         {
             if (IsProgramRunning)
                 throw new RobotsException("Robot cannot run 2 programs at same time!");
 
             IsProgramRunning = true;
-            AssignedProgram.Start(Robot);
-            AssignedProgram.OnProgramExecutionEnd += onProgramExecutionEnd;
+            var executor = programExecutionService.Execute(AssignedProgram, Robot);
+
+            executor.ProgramExecutionEnd += onProgramExecutionEnd;
+
+            return executor;
         }
 
-        private void onProgramExecutionEnd(object sender, ProgramEventArgs e)
+        private void onProgramExecutionEnd(object sender, EventArgs e)
         {
-            if (Robot != e.Robot)
-                return;
+            var exec = sender as IProgramExecutor;
 
             IsProgramRunning = false;
-            AssignedProgram.OnProgramExecutionEnd -= onProgramExecutionEnd;
+            exec.ProgramExecutionEnd -= onProgramExecutionEnd;
         }
 
         public void DeassignProgram()

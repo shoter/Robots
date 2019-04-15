@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Robots.Gui
+namespace Robots.Core
 {
     public class RobotsException : Exception
     {

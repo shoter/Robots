@@ -155,7 +155,6 @@
     </Compile>
     <Compile Include="Modules\Robots\RobotView\RobotViewProgramViewModel.cs" />
     <Compile Include="Modules\Robots\RobotView\RobotViewViewModel.cs" />
-    <Compile Include="RobotsException.cs" />
     <Compile Include="RobotsKernel.cs" />
     <Compile Include="State\ApplicationState.cs" />
     <Compile Include="State\IApplicationState.cs" />

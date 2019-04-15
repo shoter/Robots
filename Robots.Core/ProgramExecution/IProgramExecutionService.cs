@@ -17,5 +17,7 @@ namespace Robots.Core.ProgramExecution
         IProgramExecutor Execute(IProgram program, IRobot robot);
 
         bool CanExecute(IProgram program, IRobot robot);
+
+        bool IsProgramRunning(IProgram program);
     }
 }

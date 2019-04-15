@@ -22,7 +22,7 @@ namespace Robots.Gui.Test.UnitTests.Modules.Robots.RobotView
 
         public RobotViewViewModelTests()
         {
-            viewModel = new RobotViewViewModel(state, robotLogMock.Object);
+            viewModel = new RobotViewViewModel(state.Object, robotLogMock.Object);
         }
 
     }

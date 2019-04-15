@@ -1,4 +1,6 @@
 ﻿using Moq;
+using Robots.Core;
+using Robots.Core.ProgramExecution;
 using Robots.Core.Programs;
 using Robots.Gui.State;
 using Robots.SDK;
@@ -15,10 +17,15 @@ namespace Robots.Gui.Test.State
 
         private Mock<IRobot> robotMock = new Mock<IRobot>();
 
+        private readonly Mock<IProgramExecutionService> executionServiceMock = new Mock<IProgramExecutionService>();
+
+        private readonly Mock<IProgramExecutor> defaultExecutorMock = new Mock<IProgramExecutor>();
+
 
         public RobotStateTests()
         {
-            this.robotState = new RobotState(robotMock.Object, new Mock<IRobotLog>().Object);
+            executionServiceMock.Setup(x => x.Execute(It.IsAny<IProgram>(), It.IsAny<IRobot>())).Returns(defaultExecutorMock.Object);
+            this.robotState = new RobotState(executionServiceMock.Object, robotMock.Object, new Mock<IRobotLog>().Object);
         }
 
         [Fact]
@@ -47,7 +54,6 @@ namespace Robots.Gui.Test.State
             robotState.RunProgram();
 
             Assert.True(robotState.IsProgramRunning);
-            programMock.Verify(x => x.Start(robotMock.Object), Times.Once);
         }
 
         [Fact]
@@ -79,7 +85,9 @@ namespace Robots.Gui.Test.State
             robotState.AssignProgram(program);
             robotState.RunProgram();
 
-            programMock.Raise(x => x.OnProgramExecutionEnd += null, new ProgramEventArgs(robotMock.Object));
+
+
+            defaultExecutorMock.Raise(x => x.ProgramExecutionEnd += null, EventArgs.Empty);
 
             Assert.False(robotState.IsProgramRunning);
         }

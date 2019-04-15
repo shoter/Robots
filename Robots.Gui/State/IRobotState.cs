@@ -1,4 +1,5 @@
-﻿using Robots.Core.Programs;
+﻿using Robots.Core.ProgramExecution;
+using Robots.Core.Programs;
 using Robots.SDK;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,6 @@ namespace Robots.Gui.State
 
         bool CanAssignProgram();
 
-        void RunProgram();
+        IProgramExecutor RunProgram();
     }
 }

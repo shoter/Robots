@@ -1,4 +1,5 @@
-﻿using Robots.Core.Programs;
+﻿using Robots.Core.ProgramExecution;
+using Robots.Core.Programs;
 using Robots.SDK;
 using System;
 using System.Collections.Generic;
@@ -19,14 +20,14 @@ namespace Robots.Gui.State
         private List<IProgram> ProgramsList { get; } = new List<IProgram>();
 
 
-        public ApplicationState(IRobotFactory robotFactory)
+        public ApplicationState(IRobotFactory robotFactory, IProgramExecutionService programExecutionService)
         {
             var robots = robotFactory.GetRegisteredRobots();
 
             RobotsList.Capacity = robots.Count();
 
             foreach (var r in robots)
-                RobotsList.Add(new RobotState(r, new RobotLog()));
+                RobotsList.Add(new RobotState(programExecutionService, r, new RobotLog()));
 
             for(int i = 0; i <5; ++i)
                 ProgramsList.Add(new Program());

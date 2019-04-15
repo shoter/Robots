@@ -1,4 +1,5 @@
 ﻿using Moq;
+using Robots.Core.ProgramExecution;
 using Robots.Core.Programs;
 using Robots.Gui.State;
 using Robots.SDK;
@@ -17,9 +18,11 @@ namespace Robots.Gui.Test.State
 
         private readonly Mock<IRobotFactory> robotFactoryMock = new Mock<IRobotFactory>();
 
+        private readonly Mock<IProgramExecutionService> programExecutionServiceMock = new Mock<IProgramExecutionService>();
+
         public ApplicationStateTests()
         {
-            this.applicationState = new ApplicationState(robotFactoryMock.Object);
+            this.applicationState = new ApplicationState(robotFactoryMock.Object, programExecutionServiceMock.Object);
         }
 
         [Fact]
@@ -39,7 +42,7 @@ namespace Robots.Gui.Test.State
             }
 
             robotFactoryMock.Setup(x => x.GetRegisteredRobots()).Returns(robots);
-            applicationState = new ApplicationState(robotFactoryMock.Object);
+            applicationState = new ApplicationState(robotFactoryMock.Object, programExecutionServiceMock.Object);
 
             foreach(var robot in robots)
             {

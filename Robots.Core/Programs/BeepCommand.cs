@@ -11,6 +11,6 @@ namespace Robots.Core.Programs
     {
         public string Describe() => "Beep";
 
-        public Task Execute(IRobot robot) => robot.Beep();
+        public void Execute(IRobot robot) => robot.Beep();
     }
 }

@@ -12,12 +12,6 @@ namespace Robots.Core.Programs
         string Name { get; set; }
         ulong Id { get; }
 
-        event EventHandler<ProgramCommandEventArgs> OnCommandExecutionStart;
-        event EventHandler<ProgramCommandEventArgs> OnCommandExecutionEnd;
-        event EventHandler<ProgramEventArgs> OnProgramExecutionEnd;
-
-        Task Start(IRobot robot);
-
         void AddCommand(IProgramCommand command);
         void RemoveCommand(IProgramCommand command);
 

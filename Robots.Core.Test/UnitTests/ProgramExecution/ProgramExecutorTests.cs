@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Robots.SDK
+namespace Robots.Core.Test.UnitTests.ProgramExecution
 {
-    public interface IRobot
+    public class ProgramExecutorTests
     {
-        void Move(double distance);
-        void Turn(double angle);
-        void Beep();
+        
     }
 }

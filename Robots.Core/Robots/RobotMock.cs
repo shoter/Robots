@@ -26,22 +26,22 @@ namespace Robots.Core.Robots
         }
 
 
-        public Task Beep()
+        public void Beep()
         {
-            lock(exclusivenessMutex)
-                return Task.Delay(500);
+            lock (exclusivenessMutex)
+                Thread.Sleep(500);
         }
 
-        public Task Move(double distance)
+        public void Move(double distance)
         {
-            lock(exclusivenessMutex)
-                return Task.Delay((int)Math.Min(5000, distance));
+            lock (exclusivenessMutex)
+                Thread.Sleep((int)Math.Min(5000, distance));
         }
 
-        public Task Turn(double angle)
+        public void Turn(double angle)
         {
-            lock(exclusivenessMutex)
-                return Task.Delay((int)Math.Min(5000, angle));
+            lock (exclusivenessMutex)
+                Thread.Sleep((int)Math.Min(5000, angle));
         }
 
         public override string ToString() => Name;

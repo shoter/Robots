@@ -31,9 +31,7 @@ namespace Robots.Core.Programs
 
         public IEnumerable<IProgramCommand> Commands => CommandList;
 
-        public event EventHandler<ProgramCommandEventArgs> OnCommandExecutionStart;
-        public event EventHandler<ProgramCommandEventArgs> OnCommandExecutionEnd;
-        public event EventHandler<ProgramEventArgs> OnProgramExecutionEnd;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Program()
@@ -50,18 +48,6 @@ namespace Robots.Core.Programs
         public void RemoveCommand(IProgramCommand command)
         {
             CommandList.Remove(command);
-        }
-
-        public async Task Start(IRobot robot)
-        {
-            foreach(var c in Commands)
-            {
-                OnCommandExecutionStart?.Invoke(this, new ProgramCommandEventArgs(robot, c));
-                await c.Execute(robot);
-                OnCommandExecutionEnd?.Invoke(this, new ProgramCommandEventArgs(robot, c));
-            }
-
-            OnProgramExecutionEnd?.Invoke(this, new ProgramEventArgs(robot));
         }
 
         public override string ToString() => Name;

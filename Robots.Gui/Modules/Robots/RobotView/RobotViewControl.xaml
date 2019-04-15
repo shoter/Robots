@@ -19,13 +19,18 @@
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
             <Label FontSize="20" Content="{Binding RobotName}"/>
-            
-            <ComboBox ItemsSource="{Binding Programs}"
+
+            <ComboBox IsEnabled="{Binding IsProgramModificationEnabled}"
+                      ItemsSource="{Binding Programs}"
                       SelectedItem="{Binding SelectedProgram}"
                       DisplayMemberPath="Name"/>
 
             <Label>Robot Status:</Label>
             <Label Content="{Binding Status}"/>
+
+            <Button IsEnabled="{Binding IsProgramModificationEnabled}">
+                Start
+            </Button>
 
         </StackPanel>
 

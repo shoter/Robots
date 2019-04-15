@@ -101,6 +101,7 @@
     <Compile Include="UnitTests\Modules\Robots\RobotList\RobotListViewModelTests.cs" />
     <Compile Include="UnitTests\Modules\Robots\RobotLog\RobotLogViewModelTests.cs" />
     <Compile Include="UnitTests\Modules\Robots\RobotSection\RobotSectionViewModelTests.cs" />
+    <Compile Include="UnitTests\Modules\Robots\RobotView\RobotViewViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -17,7 +17,7 @@ namespace Robots.Core.Programs
         /// </summary>
         /// <param name="robot"></param>
         /// <returns></returns>
-        Task Execute(IRobot robot);
+        void Execute(IRobot robot);
 
         /// <summary>
         /// Returns human readable string describing the current command.

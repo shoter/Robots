@@ -33,6 +33,19 @@ namespace Robots.Gui.Modules.Robots.RobotView
             }
         }
 
+        public bool IsProgramModificationEnabled
+        {
+            get
+            {
+                if(Robot.IsProgramRunning)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
         public string RobotName => $"Robot {Robot?.Id}";
 
         public Visibility Visibility => Robot == null ? Visibility.Hidden : Visibility.Visible;

@@ -1,6 +1,8 @@
 # Robots
 Software for controlling robots inside factory.
 
+Robots.Gui is a start up project containing WPF application.
+
 
 ## Program Overview
 

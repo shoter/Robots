@@ -86,6 +86,41 @@ namespace Robots.Core.Test.UnitTests.ProgramExecution
 
             Assert.True(executionService.IsProgramRunning(programMock.Object));
         }
+
+        [Fact]
+        public void ProgramExecutionStarted_ShouldStart_AfterProgramStart()
+        {
+            IProgram executedProgram = null;
+            executionService.ProgramExecutionStarted += (_, e) => executedProgram = e.Program;
+
+            executionService.Execute(programMock.Object, robotMock.Object);
+
+            Assert.Equal(programMock.Object, executedProgram);
+        }
+
+        [Fact]
+        public void ProgramExecutionCompleted_ShouldNotInvoke_BeforeProgramCompleted()
+        {
+            IProgram executedProgram = null;
+            executionService.ProgramExecutionCompleted += (_, e) => executedProgram = e.Program;
+
+            executionService.Execute(programMock.Object, robotMock.Object);
+
+            Assert.Null(executedProgram);
+        }
+
+        [Fact]
+        public void ProgramExecutionCompleted_ShouldInvoke_AfterProgramCompleted()
+        {
+            IProgram executedProgram = null;
+            executionService.ProgramExecutionCompleted += (_, e) => executedProgram = e.Program;
+
+            executionService.Execute(programMock.Object, robotMock.Object);
+
+            defaultExecutorMock.Raise(x => x.ProgramExecutionEnd += null, EventArgs.Empty);
+
+            Assert.Equal(programMock.Object, executedProgram);
+        }
         
     }
 }

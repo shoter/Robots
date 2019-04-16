@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace Robots.Core
 {
+    /// <summary>
+    /// Exception type used to signalize problems specific to Robots application.
+    /// Main reason to create specific exception for application was to ease unit tests and only catch exceptions that I meant to catch to not have false positives/negatives in unit tests.
+    /// </summary>
     public class RobotsException : Exception
     {
         public RobotsException()

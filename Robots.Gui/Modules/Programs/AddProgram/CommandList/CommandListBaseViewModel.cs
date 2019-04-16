@@ -14,6 +14,19 @@ namespace Robots.Gui.Modules.Programs.AddProgram.CommandList
         public event EventHandler<AddCommandEventArgs> AddProgram;
         public event EventHandler<CommandListStateEventArgs> Transition;
 
+        private bool isAddingCommandsEnabled = true;
+        public bool IsAddingCommandsEnabled
+        {
+            get => isAddingCommandsEnabled;
+            set
+            {
+                isAddingCommandsEnabled = value;
+                App.Current.Dispatcher.Invoke(() =>
+                            CommandManager.InvalidateRequerySuggested()
+                            );
+            }
+        }
+
         protected void AddCommandInvoke(IProgramCommand command)
         {
             AddProgram?.Invoke(this, new AddCommandEventArgs(command));
@@ -23,5 +36,6 @@ namespace Robots.Gui.Modules.Programs.AddProgram.CommandList
         {
             Transition?.Invoke(this, new CommandListStateEventArgs(newState));
         }
+
     }
 }

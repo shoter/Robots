@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Robots.Core.ProgramExecution;
 using Robots.Core.Programs;
 using Robots.Gui.State;
 
@@ -13,27 +14,23 @@ namespace Robots.Gui.Modules.Programs
     {
         private IApplicationState State { get; }
 
-        public ProgramService(IApplicationState state)
+        private readonly IProgramExecutionService programExecutionService;
+
+        public ProgramService(IProgramExecutionService programExecutionService, IApplicationState state)
         {
             this.State = state;
-        }
-
-        public virtual IEnumerable<IRobotState> GetRobotsRunningProgram(ulong programId)
-        {
-            foreach(var r in State.Robots)
-            {
-                if (r.IsProgramRunning && r.AssignedProgram.Id == programId)
-                    yield return r;
-            }
+            this.programExecutionService = programExecutionService;
         }
 
         public virtual bool CanRemoveProgram(ulong programId)
         {
-            if (GetRobotsRunningProgram(programId).Any())
-                return false;
+            var program = GetProgram(programId);
 
+            if (programExecutionService.IsProgramRunning(program))
+                return false;
             return true;
         }
+
 
         public virtual void RemoveProgram(ulong programId)
         {

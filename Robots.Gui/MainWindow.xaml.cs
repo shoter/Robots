@@ -31,13 +31,13 @@ namespace Robots.Gui
             this.DataContext = this.vm = vm;
         }
 
-        private void RibbonApplicationMenu_Loaded(object sender, RoutedEventArgs e)
+        private void ribbonApplicationMenu_Loaded(object sender, RoutedEventArgs e)
         {
             var grid = (RibbonApplicationMenu.Template.FindName("MainPaneBorder", RibbonApplicationMenu) as Border).Parent as Grid;
             grid.ColumnDefinitions[2].Width = new GridLength(0);
         }
 
-        private void Ribbon_Loaded(object sender, RoutedEventArgs e)
+        private void ribbon_Loaded(object sender, RoutedEventArgs e)
         {
             Grid child = VisualTreeHelper.GetChild((DependencyObject)sender, 0) as Grid;
             if (child != null)

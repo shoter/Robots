@@ -26,7 +26,7 @@ namespace Robots.Gui.Modules.Programs.AddProgram.CommandList
 
         private static bool canAdd(CommandTurnViewModel item)
         {
-            return item.Angle.HasValue;
+            return item.Angle.HasValue && item.IsAddingCommandsEnabled;
         }
 
         private static void onAddMove(CommandTurnViewModel item)

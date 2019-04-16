@@ -10,7 +10,7 @@
         <local:RobotListViewModel/>
     </UserControl.DataContext>
     <Grid>
-        <ListView Name="RobotList" ItemsSource="{Binding Robots}" SelectionMode="Single">
+        <ListView Name="RobotList" ItemsSource="{Binding Robots}" SelectionMode="Single" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="{Binding ElementName=FirstColumn, Path=ActualWidth}" Header="Name" DisplayMemberBinding="{Binding DisplayName}"/>

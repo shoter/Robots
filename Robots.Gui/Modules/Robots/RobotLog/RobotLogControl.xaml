@@ -10,7 +10,7 @@
         <local:RobotLogViewModel/>
     </UserControl.DataContext>
     <Grid>
-        <ListView Name="RobotLogList" ItemsSource="{Binding Entries}">
+        <ListView Name="RobotLogList" ItemsSource="{Binding Entries}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="{Binding ElementName=FirstColumn, Path=ActualWidth}" Header="Time" DisplayMemberBinding="{Binding Time}"/>

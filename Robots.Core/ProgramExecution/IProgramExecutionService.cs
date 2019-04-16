@@ -19,5 +19,8 @@ namespace Robots.Core.ProgramExecution
         bool CanExecute(IProgram program, IRobot robot);
 
         bool IsProgramRunning(IProgram program);
+
+        event EventHandler<ProgramExecutionServiceProgramEventArgs> ProgramExecutionStarted;
+        event EventHandler<ProgramExecutionServiceProgramEventArgs> ProgramExecutionCompleted;
     }
 }

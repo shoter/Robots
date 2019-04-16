@@ -20,7 +20,6 @@ namespace Robots.Gui.Modules.Programs.AddProgram
 
         public IUserControlProxy CommandAddControl { get; private set; }
 
-
         public CommandListState CommandState { get; private set; } = CommandListState.Buttons;
 
         private ICommandListFactory CommandListFactory { get; }

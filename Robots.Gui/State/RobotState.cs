@@ -41,9 +41,9 @@ namespace Robots.Gui.State
             }
         }
 
-        private readonly IProgramExecutionService programExecutionService;
-
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private readonly IProgramExecutionService programExecutionService;
 
         public RobotState(IProgramExecutionService programExecutionService, IRobot robot, IRobotLog robotLog)
         {
@@ -81,8 +81,6 @@ namespace Robots.Gui.State
 
             ProgramExecutor.CommandExecutionStart += programExecutor_CommandExecutionStart;
             ProgramExecutor.CommandExecutionEnd += programExecutor_CommandExecutionEnd;
-
-            ProgramExecutor.Start();
 
             notifyPropertiesChanged(nameof(Status));
 

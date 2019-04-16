@@ -12,7 +12,7 @@
         <local:ProgramListViewModel/>
     </UserControl.DataContext>
 
-    <ListView Name="ProgramListView" ItemsSource="{Binding Programs}" SelectionMode="Single">
+    <ListView Name="ProgramListView" ItemsSource="{Binding Programs}" SelectionMode="Single" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
         <ListView.View>
             <GridView>
                 <GridViewColumn Width="{Binding ElementName=ProgramListView, Path=ActualWidth}"

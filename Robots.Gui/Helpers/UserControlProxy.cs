@@ -7,6 +7,8 @@ using System.Windows.Controls;
 
 namespace Robots.Gui.Helpers
 {
+    // UserControl is a hell to test with WPF. Therefore I created an interface that can be easily mocked in all tests.
+
     public class UserControlProxy : IUserControlProxy
     {
         public static UserControlProxy NullProxy = new UserControlProxy(null);

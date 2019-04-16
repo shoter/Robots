@@ -15,7 +15,7 @@ namespace Robots.Core.ProgramExecution
     /// </summary>
     public interface IProgramExecutor
     {
-       bool IsCompleted { get; } 
+        bool IsCompleted { get; }
 
         IProgram Program { get; }
         IRobot Robot { get; }

@@ -10,7 +10,6 @@ namespace Robots.Gui.Modules.Programs
 {
     public interface IProgramService
     {
-        IEnumerable<IRobotState> GetRobotsRunningProgram(ulong programId);
         bool CanRemoveProgram(ulong programId);
         void RemoveProgram(ulong programId);
         IProgram GetProgram(ulong programId);

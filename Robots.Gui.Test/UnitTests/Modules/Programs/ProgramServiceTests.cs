@@ -1,4 +1,5 @@
 ﻿using Moq;
+using Robots.Core.ProgramExecution;
 using Robots.Core.Programs;
 using Robots.Gui.Modules.Programs;
 using Robots.Gui.State;
@@ -20,11 +21,12 @@ namespace Robots.Gui.Test.UnitTests.Modules.Programs
 
 
         private readonly Mock<ProgramService> programServiceMock;
+        private readonly Mock<IProgramExecutionService> programExecutionService = new Mock<IProgramExecutionService>();
         private IProgramService programService;
 
         public ProgramServiceTests()
         {
-            programServiceMock = new Mock<ProgramService>(applicationStateMock.Object);
+            programServiceMock = new Mock<ProgramService>(programExecutionService.Object, applicationStateMock.Object);
             programServiceMock.CallBase = true;
 
             programService = programServiceMock.Object;
@@ -32,58 +34,23 @@ namespace Robots.Gui.Test.UnitTests.Modules.Programs
         }
 
         [Fact]
-        public void GetRobotsRunningProgram_ShouldReturnRobotsRunningGivenProgram()
-        {
-            var programMock = new Mock<IProgram>();
-            programMock.SetupGet(x => x.Id).Returns(123);
-
-            var program = programMock.Object;
-
-            var robotWithGivenProgramRunningMock = new Mock<IRobotState>();
-            var robotWithGivenProgramNotRunningMock = new Mock<IRobotState>();
-            var robotWithOtherProgramRunningMock = new Mock<IRobotState>();
-            var robotWithOtherProgramNotRunningMock = new Mock<IRobotState>();
-
-            robotWithGivenProgramRunningMock.SetupGet(x => x.AssignedProgram).Returns(program);
-            robotWithGivenProgramRunningMock.SetupGet(x => x.IsProgramRunning).Returns(true);
-
-            robotWithGivenProgramNotRunningMock.SetupGet(x => x.AssignedProgram).Returns(program);
-
-            robotWithOtherProgramRunningMock.SetupGet(x => x.AssignedProgram).Returns(new Mock<IProgram>().Object);
-            robotWithOtherProgramRunningMock.SetupGet(x => x.IsProgramRunning).Returns(true);
-
-            robotWithOtherProgramNotRunningMock.SetupGet(x => x.AssignedProgram).Returns(new Mock<IProgram>().Object);
-
-            List<IRobotState> robots = new List<IRobotState>()
-            {
-                robotWithGivenProgramRunningMock.Object,
-                robotWithGivenProgramNotRunningMock.Object,
-                robotWithOtherProgramNotRunningMock.Object,
-                robotWithOtherProgramRunningMock.Object
-            };
-
-            applicationStateMock.SetupGet(x => x.Robots).Returns(robots);
-
-            var returnedRobots = programService.GetRobotsRunningProgram(program.Id);
-
-            Assert.Same(returnedRobots.First(), robotWithGivenProgramRunningMock.Object);
-            Assert.Single(returnedRobots);
-        }
-
-        [Fact]
-        public void CanRemoveProgram_ShouldReturnTrueIfNoRobotsAreUsingProgram()
+        public void CanRemoveProgram_ShouldReturnTrueIfProgramIsNotRunning()
         {
             var program = new Mock<IProgram>().Object;
-            programServiceMock.Setup(x => x.GetRobotsRunningProgram(program.Id)).Returns(new List<IRobotState>());
+            programServiceMock.Setup(x => x.GetProgram(program.Id)).Returns(program);
+
+            programExecutionService.Setup(x => x.IsProgramRunning(program)).Returns(false);
 
             Assert.True(programService.CanRemoveProgram(program.Id));
         }
 
         [Fact]
-        public void CanRemoveProgram_ShouldReturnFalseIfSomeRobotsAreUsingProgram()
+        public void CanRemoveProgram_ShouldReturnFalseIfNoProgramIsNotRunning()
         {
             var program = new Mock<IProgram>().Object;
-            programServiceMock.Setup(x => x.GetRobotsRunningProgram(program.Id)).Returns(new List<IRobotState>() { robotMock.Object });
+            programServiceMock.Setup(x => x.GetProgram(program.Id)).Returns(program);
+
+            programExecutionService.Setup(x => x.IsProgramRunning(program)).Returns(true);
 
             Assert.False(programService.CanRemoveProgram(program.Id));
         }

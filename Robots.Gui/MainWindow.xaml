@@ -25,9 +25,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <Ribbon Name="Ribbon" SelectedIndex="0" Height="45" Loaded="Ribbon_Loaded" >
+        <Ribbon Name="Ribbon" SelectedIndex="0" Height="45" Loaded="ribbon_Loaded" >
             <Ribbon.ApplicationMenu>
-                <RibbonApplicationMenu Name="RibbonApplicationMenu" AllowDrop="false" Loaded="RibbonApplicationMenu_Loaded" >
+                <RibbonApplicationMenu Name="RibbonApplicationMenu" AllowDrop="false" Loaded="ribbonApplicationMenu_Loaded" >
                     <RibbonApplicationMenuItem Header="Robot List" Click="robotListClicked" />
                     <RibbonApplicationMenuItem Header="Program editor" Click="programEditorClicked" />
                     <RibbonApplicationMenuItem Header="Exit" Click="exitClicked" />

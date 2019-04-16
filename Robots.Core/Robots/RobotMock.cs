@@ -1,4 +1,5 @@
-﻿using Robots.SDK;
+﻿using Robots.Common;
+using Robots.SDK;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,19 +11,21 @@ namespace Robots.Core.Robots
     /// </summary>
     public class RobotMock : IRobot
     {
-        private static uint createdRobots = 0;
+        private static readonly UniqueIdGenerator uniqueId = new UniqueIdGenerator();
+
         public string Name { get; }
 
         /// <summary>
-        /// Only 1 method can be executed at one time
+        /// Only 1 method can be executed at one time.
+        /// Somehow simulation of the thing that robot cannot do 2 things at the same time.
         /// </summary>
-        private Mutex exclusivenessMutex = new Mutex();
+        private readonly Mutex exclusivenessMutex = new Mutex();
 
 
 
         public RobotMock()
         {
-            Name = $"Robot {++createdRobots}";
+            Name = $"Robot {uniqueId.Id}";
         }
 
 

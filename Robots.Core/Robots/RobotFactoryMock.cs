@@ -11,19 +11,17 @@ namespace Robots.Core.Robots
     {
         private readonly IRobot[] robots;
 
+        private const int robotCount = 15;
+
         public RobotFactoryMock()
         {
-            const int robotCount = 15;
-
             robots = new IRobot[robotCount];
             for(int i = 0;i < robotCount; ++i)
             {
-                robots[i] = createRobot();
+                robots[i] = new RobotMock();
             }
         }
 
         public IEnumerable<IRobot> GetRegisteredRobots() => robots;
-
-        private IRobot createRobot() => new RobotMock();
     }
 }

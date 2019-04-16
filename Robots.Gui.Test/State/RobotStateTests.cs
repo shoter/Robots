@@ -17,6 +17,8 @@ namespace Robots.Gui.Test.State
 
         private Mock<IRobot> robotMock = new Mock<IRobot>();
 
+        private Mock<IProgram> programMock = new Mock<IProgram>();
+
         private readonly Mock<IProgramExecutionService> executionServiceMock = new Mock<IProgramExecutionService>();
 
         private readonly Mock<IProgramExecutor> defaultExecutorMock = new Mock<IProgramExecutor>();
@@ -24,7 +26,7 @@ namespace Robots.Gui.Test.State
 
         public RobotStateTests()
         {
-            executionServiceMock.Setup(x => x.Execute(It.IsAny<IProgram>(), It.IsAny<IRobot>())).Returns(defaultExecutorMock.Object);
+            executionServiceMock.Setup(x => x.Execute(programMock.Object, robotMock.Object)).Returns(defaultExecutorMock.Object);
             this.robotState = new RobotState(executionServiceMock.Object, robotMock.Object, new Mock<IRobotLog>().Object);
         }
 
@@ -38,7 +40,7 @@ namespace Robots.Gui.Test.State
         [Fact]
         public void AssignProgram_ShouldAssignProgram()
         {
-            var program = new Mock<IProgram>().Object;
+            var program = programMock.Object;
 
             robotState.AssignProgram(program);
             Assert.Equal(program, robotState.AssignedProgram);
@@ -47,7 +49,6 @@ namespace Robots.Gui.Test.State
         [Fact]
         public void RunProgram_ShouldStartAssignedProgram()
         {
-            var programMock = new Mock<IProgram>();
             IProgram program = programMock.Object;
 
             robotState.AssignProgram(program);
@@ -59,7 +60,7 @@ namespace Robots.Gui.Test.State
         [Fact]
         public void RunProgram_ShouldNotRunTwoPrograms()
         {
-            var program = new Mock<IProgram>().Object;
+            var program = programMock.Object; 
 
             robotState.AssignProgram(program);
             robotState.RunProgram();
@@ -69,7 +70,7 @@ namespace Robots.Gui.Test.State
         [Fact]
         public void RunProgram_CannotAssignProgramAfterRunningProgram()
         {
-            var program = new Mock<IProgram>().Object;
+            var program = programMock.Object;
 
             robotState.AssignProgram(program);
             robotState.RunProgram();
@@ -77,14 +78,23 @@ namespace Robots.Gui.Test.State
         }
 
         [Fact]
-        public void RunProgram_AfterExecutionEnds_IsProgramRunningSetToFalse()
+        public void RunProgram_WillExecuteProgram()
         {
-            var programMock = new Mock<IProgram>();
-            var program = programMock.Object; 
+            var program = programMock.Object;
 
             robotState.AssignProgram(program);
             robotState.RunProgram();
 
+            executionServiceMock.Verify(x => x.Execute(program, robotMock.Object), Times.Once);
+        }
+
+        [Fact]
+        public void RunProgram_AfterExecutionEnds_IsProgramRunningSetToFalse()
+        {
+            var program = programMock.Object; 
+
+            robotState.AssignProgram(program);
+            robotState.RunProgram();
 
             defaultExecutorMock.SetupGet(x => x.IsCompleted).Returns(true);
 
@@ -100,7 +110,6 @@ namespace Robots.Gui.Test.State
         [Fact]
         public void Status_ShouldHaveProgramName_WhenProgramIsRunning()
         {
-            var programMock = new Mock<IProgram>();
             programMock.SetupGet(x => x.Name).Returns("asdasdasdasd");
             var program = programMock.Object;
 

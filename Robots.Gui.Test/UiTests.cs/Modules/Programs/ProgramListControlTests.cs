@@ -11,7 +11,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Automation.Peers;
+using System.Windows.Controls;
+using System.Windows.Media;
 using TestStack.White;
 using TestStack.White.Factory;
 using TestStack.White.UIItems.WindowItems;
@@ -23,7 +26,24 @@ namespace Robots.Gui.Test.UiTestscs.Modules.Programs
     {
         ApplicationStateMock applicationStateMock = new ApplicationStateMock();
         Mock<IProgramService> programServiceMock = new Mock<IProgramService>();
+        Mock<IProgramFactory> programFactory = new Mock<IProgramFactory>();
         INotificationService notificationService = new Mock<INotificationService>().Object;
+
+        [WpfFact]
+        public void ProgramList_ShouldDisplayProgramsOnListView()
+        {
+            var vm = new ProgramListViewModel(applicationStateMock.Object, programServiceMock.Object, programFactory.Object, notificationService);
+
+            var control = new ProgramListControl();
+            control.DataContext = vm;
+
+            //ListView listView = VisualTreeHelper.GetChild((DependencyObject)control, 0) as ListView;
+
+            //listView.FindName()
+
+
+            var a = "honk";
+        }
 
         [Fact]
         public void ProgramList_ShouldDisplayNameOfPrograms()

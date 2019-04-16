@@ -17,8 +17,4 @@
     <ProjectReference Include="..\Robots.Core\Robots.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="IntegrationTests\" />
-  </ItemGroup>
-
 </Project>

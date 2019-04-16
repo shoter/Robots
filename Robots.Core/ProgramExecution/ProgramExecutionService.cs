@@ -16,6 +16,9 @@ namespace Robots.Core.ProgramExecution
 
         private readonly Mutex runningExecutorsMutex = new Mutex();
 
+        public event EventHandler<ProgramExecutionServiceProgramEventArgs> ProgramExecutionStarted;
+        public event EventHandler<ProgramExecutionServiceProgramEventArgs> ProgramExecutionCompleted;
+
         private IProgramExecutorFactory ExecutorFactory { get; }
 
         public ProgramExecutionService(IProgramExecutorFactory factory)
@@ -49,6 +52,8 @@ namespace Robots.Core.ProgramExecution
 
             executor.ProgramExecutionEnd += onExecutionEnd;
 
+            executor.Start();
+            ProgramExecutionStarted?.Invoke(this, new ProgramExecutionServiceProgramEventArgs(program));
             return executor;
         }
 
@@ -61,6 +66,8 @@ namespace Robots.Core.ProgramExecution
             {
                 RunningExecutors.Remove(executor);
             }
+
+            ProgramExecutionCompleted?.Invoke(this, new ProgramExecutionServiceProgramEventArgs(executor.Program));
         }
     }
 }

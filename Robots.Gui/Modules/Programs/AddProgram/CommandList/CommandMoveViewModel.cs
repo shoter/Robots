@@ -25,7 +25,7 @@ namespace Robots.Gui.Modules.Programs.AddProgram.CommandList
 
         private static bool canAdd(CommandMoveViewModel item)
         {
-            return item.Distance.HasValue;
+            return item.Distance.HasValue && item.IsAddingCommandsEnabled;
         }
 
         private static void onAddMove(CommandMoveViewModel item)

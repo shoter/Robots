@@ -65,14 +65,13 @@ namespace Robots.Gui.Modules.Programs.ProgramList
 
         private void onProgramItemRemoval(object sender, ProgramListItemEventArgs e)
         {
-            Programs.Remove(e.Item);
-
             if(programService.CanRemoveProgram(e.Item.Id) == false)
             {
                 notificationService.ShowWarningMessageBox("Cannot remove the program. It is probably actively used by some robot.");
                 return;
             }
 
+            Programs.Remove(e.Item);
             programService.RemoveProgram(e.Item.Id);
             ProgramRemove?.Invoke(this, e);
         }

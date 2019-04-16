@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 
@@ -12,6 +13,8 @@ namespace Robots.Gui.Modules.Robots.RobotLog
     public class RobotLogViewModel : IRobotLogViewModel
     {
         private ObservableCollection<IRobotLogEntryViewModel> entryCollection = new ObservableCollection<IRobotLogEntryViewModel>();
+
+        private Mutex mutex = new Mutex();
 
         private IRobotLog log;
 
@@ -32,7 +35,7 @@ namespace Robots.Gui.Modules.Robots.RobotLog
 
             this.log = log;
 
-            foreach(var entry in log.Entries)
+            foreach (var entry in log.Entries)
             {
                 AddEntry(new RobotLogEntryViewModel(entry));
             }
@@ -43,26 +46,30 @@ namespace Robots.Gui.Modules.Robots.RobotLog
 
         private void Log_EntriesCleared(object sender, EventArgs e)
         {
-            App.Current.Dispatcher.Invoke(() => {
+            App.Current.Dispatcher.Invoke(() =>
+            {
                 Clear();
             });
         }
 
         private void log_NewEntry(object sender, RobotLogNewEntryEventArgs e)
         {
-            App.Current.Dispatcher.Invoke(() => {
+            App.Current.Dispatcher.Invoke(() =>
+            {
                 AddEntry(new RobotLogEntryViewModel(e.NewEntry));
             }); ;
         }
 
         public void AddEntry(IRobotLogEntryViewModel entry)
         {
-            entryCollection.Add(entry);
+            lock (mutex)
+                entryCollection.Add(entry);
         }
 
         public void Clear()
         {
-            entryCollection.Clear();
+            lock (mutex)
+                entryCollection.Clear();
         }
     }
 }

@@ -89,12 +89,12 @@ namespace Robots.Gui.State
 
         private void programExecutor_CommandExecutionEnd(object sender, ProgramExecutorCommandEventArgs e)
         {
-            RobotLog.AddEntry(new RobotLogEntry($"Starting execution of command: {e.Command.Describe()}."));
+            RobotLog.AddEntry(new RobotLogEntry($"Completed execution of command: {e.Command.Describe()}."));
         }
 
         private void programExecutor_CommandExecutionStart(object sender, ProgramExecutorCommandEventArgs e)
         {
-            RobotLog.AddEntry(new RobotLogEntry($"Completed execution of command: {e.Command.Describe()}."));
+            RobotLog.AddEntry(new RobotLogEntry($"Starting execution of command: {e.Command.Describe()}."));
         }
 
         private void onProgramExecutionEnd(object sender, EventArgs e)

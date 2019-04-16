@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Robots.Gui.State
@@ -16,9 +17,12 @@ namespace Robots.Gui.State
 
         public event EventHandler EntriesCleared;
 
+        private Mutex mutex = new Mutex();
+
         public IRobotLog AddEntry(RobotLogEntry entry)
         {
-            MessagesList.Add(entry);
+            lock (mutex) 
+                MessagesList.Add(entry);
 
             NewEntry?.Invoke(this, new RobotLogNewEntryEventArgs(entry));
 
@@ -27,7 +31,8 @@ namespace Robots.Gui.State
 
         public IRobotLog Clear()
         {
-            MessagesList.Clear();
+            lock(mutex)
+                MessagesList.Clear();
 
             EntriesCleared?.Invoke(this, EventArgs.Empty);
             return this;
